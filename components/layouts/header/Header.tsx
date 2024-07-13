@@ -14,7 +14,6 @@ export const Header = () => {
   const { scrollDir } = useDetectScroll();
 
   const pathname = usePathname();
-  const isSanityStudio = pathname.startsWith("/editor");
 
   const [showMenu, setShowMenu] = useState(false);
 
@@ -35,7 +34,7 @@ export const Header = () => {
       className={cx(
         " sm:border-b-2 duration-300 bg-secondary-950 border-primary-300 fixed w-full py-6",
         scrollDir === "down" ? "-translate-y-full" : "translate-y-0",
-        isSanityStudio ? "z-0" : "z-20"
+        "z-20"
       )}
     >
       <div className="container flex justify-between">

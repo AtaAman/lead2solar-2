@@ -9,7 +9,7 @@ import Marquee from "react-fast-marquee";
 
 const Hero = async () => {
   const data = await getHomepage();
-  const { hero, gallery, promotion } = data;
+  const { gallery } = data;
 
   return (
     <Section className="bg-secondary-950 h-fit flex flex-col gap-32">
@@ -26,7 +26,7 @@ const Hero = async () => {
               rooftop solar installations
             </p>
             <Button variant="secondary">
-              <Link href={promotion.link}>Get Your Free Quote Now</Link>
+              <Link href={"/"}>Get Your Free Quote Now</Link>
             </Button>
           </div>
         </div>
