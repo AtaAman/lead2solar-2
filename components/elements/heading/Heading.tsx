@@ -6,10 +6,29 @@ interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 const Heading = ({ as = "h2", children, className }: HeadingProps) => {
-  const Heading = ({ ...props }: React.HTMLAttributes<HTMLHeadingElement>) =>
+  const sizeClasses = {
+    h1: "text-4xl sm:text-5xl",
+    h2: "text-3xl sm:text-4xl",
+    h3: "text-2xl sm:text-3xl",
+    h4: "text-xl sm:text-2xl",
+    h5: "text-lg sm:text-xl",
+    h6: "text-base sm:text-lg",
+  };
+
+  const getFontSizeClass = () => {
+    return sizeClasses[as];
+  };
+
+  const HeadingElement = ({
+    ...props
+  }: React.HTMLAttributes<HTMLHeadingElement>) =>
     React.createElement(as, props, children);
 
-  return <Heading className={cx(className)}>{children}</Heading>;
+  return (
+    <HeadingElement className={cx(className, getFontSizeClass())}>
+      {children}
+    </HeadingElement>
+  );
 };
 
 export { Heading };

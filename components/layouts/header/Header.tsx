@@ -61,10 +61,10 @@ export const Header = () => {
           </nav>
         </div>
 
-        <div className="flex h-fit z-10">
+        <div className="flex gap-2 h-fit z-10">
           <button
             onClick={toggleMenu}
-            className="p-3 flex items-center justify-center border w-fit sm:hidden rounded-full"
+            className="px-4 aspect-square flex items-center justify-center border w-fit sm:hidden rounded-full"
           >
             <Menu />
           </button>
