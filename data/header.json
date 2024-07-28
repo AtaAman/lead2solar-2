@@ -2,19 +2,16 @@
   "header": [
     {
       "label": "about us",
-      "href": "/about-us"
+      "href": "#about-us"
     },
     {
-      "label": "blog",
-      "href": "/blog"
+      "label": "Process",
+      "href": "#process"
     },
+
     {
-      "label": "careers",
-      "href": "/careers"
-    },
-    {
-      "label": "pricing",
-      "href": "/pricing"
+      "label": "Estimate",
+      "href": "#estimate"
     }
   ]
 }

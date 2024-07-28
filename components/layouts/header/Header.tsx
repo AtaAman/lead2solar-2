@@ -52,7 +52,7 @@ export const Header = () => {
             {headerData.header.map((item, index) => {
               return (
                 <li key={index} className="" onClick={toggleMenu}>
-                  <Link className="capitalize" href={""}>
+                  <Link className="capitalize" scroll={true} href={item.href}>
                     {item.label}
                   </Link>
                 </li>
