@@ -90,51 +90,52 @@ const SolarCalculator: React.FC = () => {
   });
   const [calculationResult, setCalculationResult] =
     useState<CalculationResult | null>(null);
+    const [key, setKey] = useState(0);
+    function onSubmit(data: z.infer<typeof FormSchema>) {
+      const { state, customerType, monthlyBill } = data;
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    const { state, customerType, monthlyBill } = data;
+      const residentialTariff = 5;
+      const commercialTariff = 8;
+      const governmentIncentive = 0.4; // 40% subsidy
 
-    const residentialTariff = 5;
-    const commercialTariff = 8;
-    const governmentIncentive = 0.4; // 40% subsidy
+      const systemSize =
+        monthlyBill /
+        (solarIrradianceData[state] *
+          30 *
+          (customerType === "residential"
+            ? residentialTariff
+            : commercialTariff));
 
-    const systemSize =
-      monthlyBill /
-      (solarIrradianceData[state] *
-        30 *
-        (customerType === "residential"
-          ? residentialTariff
-          : commercialTariff));
+      const systemCost = systemSize * 50000;
+      const incentiveAmount = Math.min(systemCost * governmentIncentive, 78000); // Capped at ₹78,000
+      const netCost = systemCost - incentiveAmount;
 
-    const systemCost = systemSize * 50000;
-    const incentiveAmount = Math.min(systemCost * governmentIncentive, 78000); // Capped at ₹78,000
-    const netCost = systemCost - incentiveAmount;
+      const annualGeneration = systemSize * solarIrradianceData[state] * 365;
+      const annualSavings =
+        customerType === "residential"
+          ? annualGeneration * residentialTariff
+          : annualGeneration * commercialTariff;
 
-    const annualGeneration = systemSize * solarIrradianceData[state] * 365;
-    const annualSavings =
-      customerType === "residential"
-        ? annualGeneration * residentialTariff
-        : annualGeneration * commercialTariff;
+      const paybackPeriod = netCost / annualSavings;
+      const roi = (annualSavings / netCost) * 100;
 
-    const paybackPeriod = netCost / annualSavings;
-    const roi = (annualSavings / netCost) * 100;
+      const result: CalculationResult = {
+        systemSize,
+        systemCost,
+        incentiveAmount,
+        netCost,
+        annualSavings,
+        paybackPeriod,
+        roi,
+      };
 
-    const result: CalculationResult = {
-      systemSize,
-      systemCost,
-      incentiveAmount,
-      netCost,
-      annualSavings,
-      paybackPeriod,
-      roi,
-    };
-
-    setCalculationResult(result);
-  }
-  function resetForm() {
-    form.reset();
-    setCalculationResult(null);
-  }
+      setCalculationResult(result);
+    }
+    function resetForm() {
+      form.reset();
+      setKey((prevKey) => prevKey + 1); // Add this line
+      setCalculationResult(null);
+    }
   return (
     <Section className="bg-[#FFF7ED] rounded-3xl">
       <Container>
@@ -148,7 +149,7 @@ const SolarCalculator: React.FC = () => {
             Solar Calculator - See Your Potential Savings
           </Heading>
         </div>
-        <Form {...form}>
+        <Form key={key} {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
@@ -161,7 +162,7 @@ const SolarCalculator: React.FC = () => {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="border-2 border-secondary-300">
+                      <SelectTrigger>
                         <SelectValue placeholder="Select your state" />
                       </SelectTrigger>
                     </FormControl>
