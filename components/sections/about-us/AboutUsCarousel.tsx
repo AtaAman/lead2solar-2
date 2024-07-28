@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Image from "next/image";
@@ -13,21 +14,23 @@ function AboutUsCarousel({ images }: { images: { url: string }[] }) {
       interval={6000}
       showArrows={false}
       useKeyboardArrows={true}
+      showThumbs={false}
       emulateTouch
       infiniteLoop
       autoPlay
       centerSlidePercentage={90}
       className="h-full cursor-grabbing"
     >
-      {images.map((item: any, index: number) => {
+      {Array.from({ length: 12 }).map((image, index) => {
         return (
-          <div key={index} className="w-full h-[450px]  sm:h-[700px]">
-            <Image
-              src={item.url}
+          <div
+            key={index}
+            className="w-full h-[450px] aspect-[4/3] sm:h-[500px]"
+          >
+            <img
+              src={`/images/image-${index + 1}.jpeg`}
               alt="About Us Image"
-              width={420}
               className="w-full object-cover h-full rounded-3xl"
-              height={530}
             />
           </div>
         );

@@ -34,6 +34,7 @@ export const Features = async () => {
     <Section className="bg-[#FFF7ED] rounded-3xl">
       <Container>
         <SubTitle
+          dark
           subTitle="Our Simple 3-Step Process"
           className="text-primary-950"
         />

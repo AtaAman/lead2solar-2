@@ -10,6 +10,7 @@ import {
   OurExpert,
   Testimonials,
 } from "@/components";
+import SolarCalculator from "@/data/solar-generator";
 
 export default function Home() {
   return (
@@ -23,8 +24,11 @@ export default function Home() {
       <div className="p-2 sm:p-4">
         <Testimonials />
       </div>
-      {/* <OurExpert /> */}
       <div className="p-2 sm:p-4 bg-secondary-950">
+        <SolarCalculator />
+      </div>
+      {/* <OurExpert /> */}
+      <div className="p-2 sm:p-4 ">
         <NewLetter />
       </div>
       {/* <Blog /> */}

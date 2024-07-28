@@ -1,5 +1,6 @@
 "use client";
 import { Button, Logo, Menu } from "@/components/elements";
+import { GetAQuote } from "@/components/elements/get-a-quote";
 import headerData from "@/data/header.json";
 
 import { useWindScreenowSize } from "@/hooks/useWindowSize";
@@ -67,11 +68,9 @@ export const Header = () => {
           >
             <Menu />
           </button>
-          <Button variant="tetriary-reversed">
-            <Link target="_blank" href="/">
-              Get A Quote
-            </Link>
-          </Button>
+          <GetAQuote>
+            <Button variant="tetriary-reversed">Get A Quote</Button>
+          </GetAQuote>
         </div>
       </div>
     </header>

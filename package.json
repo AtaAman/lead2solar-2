@@ -13,11 +13,17 @@
   "dependencies": {
     "@barba/core": "^2.9.7",
     "@gsap/react": "^2.1.0",
+    "@hookform/resolvers": "^3.9.0",
     "@notion-render/bookmark-plugin": "^0.0.2",
     "@notion-render/client": "^0.0.2",
     "@notion-render/hljs-plugin": "^0.0.2",
     "@notionhq/client": "^2.2.14",
     "@portabletext/react": "^3.1.0",
+    "@radix-ui/react-dialog": "^1.1.1",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-select": "^2.1.1",
+    "@radix-ui/react-slot": "^1.1.0",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.43.0",
     "@smakss/react-scroll-direction": "^4.1.0",
@@ -37,9 +43,12 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-fast-marquee": "^1.6.3",
+    "react-hook-form": "^7.52.1",
     "react-share": "^5.1.0",
     "sanity": "^3.43.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "tailwind-merge": "^2.4.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/imagesloaded": "^4.1.6",
