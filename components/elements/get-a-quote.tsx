@@ -6,6 +6,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./input";
 import { Label } from "./label";
 import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "./select";
+import {
   Dialog,
   DialogClose,
   DialogContent,
@@ -20,7 +29,16 @@ import { Button } from "./shad-cn/button";
 const schema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
   email: z.string().email({ message: "Invalid email address" }),
-  number: z.string().min(1, { message: "Phone number is required" }),
+  phone: z
+    .string()
+    .min(10, { message: "Phone number must be at least 10 digits" }),
+  pincode: z.string().min(6, { message: "Pincode must be 6 digits" }),
+  monthlyBill: z
+    .string()
+    .min(1, { message: "Monthly electricity bill is required" }),
+  address: z.string().optional(),
+  installedAt: z.enum(["home", "office", "factory", "other"]),
+  remarks: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -61,7 +79,7 @@ export function GetAQuote({ children }: { children: any }) {
       <DialogTrigger onClick={() => reset()} asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md ">
+      <DialogContent className="sm:max-w-2xl">
         <DialogHeader className="py-4 text-left">
           <DialogTitle>Request a Quote</DialogTitle>
           {!isSubmitSuccessful && (
@@ -72,7 +90,7 @@ export function GetAQuote({ children }: { children: any }) {
         </DialogHeader>
         {isSubmitSuccessful ? (
           <div>
-            <div className=" py-6 ">
+            <div className="py-6">
               Thank you for your request. We will get back to you shortly.
             </div>
 
@@ -83,9 +101,12 @@ export function GetAQuote({ children }: { children: any }) {
             </DialogFooter>
           </div>
         ) : (
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 ">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="gap-4 grid grid-cols-2"
+          >
             <div className="flex flex-col gap-2">
-              <Label htmlFor="name">Your Name</Label>
+              <Label htmlFor="name">Your Name*</Label>
               <Input
                 disabled={isSubmitting}
                 id="name"
@@ -111,17 +132,88 @@ export function GetAQuote({ children }: { children: any }) {
               )}
             </div>
             <div className="flex flex-col gap-2">
-              <Label htmlFor="number">Phone Number</Label>
+              <Label htmlFor="phone">Phone Number*</Label>
               <Input
                 disabled={isSubmitting}
-                id="number"
-                type="text"
+                id="phone"
+                type="tel"
                 placeholder="Enter your phone number"
-                {...register("number")}
+                {...register("phone")}
               />
-              {errors.number && (
-                <span className="text-red-500">{errors.number.message}</span>
+              {errors.phone && (
+                <span className="text-red-500">{errors.phone.message}</span>
               )}
+            </div>
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="pincode">Pincode*</Label>
+              <Input
+                disabled={isSubmitting}
+                id="pincode"
+                type="text"
+                placeholder="Enter your pincode"
+                {...register("pincode")}
+              />
+              {errors.pincode && (
+                <span className="text-red-500">{errors.pincode.message}</span>
+              )}
+            </div>
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="monthlyBill">Monthly Electricity Bill*</Label>
+              <Input
+                disabled={isSubmitting}
+                id="monthlyBill"
+                type="text"
+                placeholder="Enter your monthly electricity bill"
+                {...register("monthlyBill")}
+              />
+              {errors.monthlyBill && (
+                <span className="text-red-500">
+                  {errors.monthlyBill.message}
+                </span>
+              )}
+            </div>
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="address">Address</Label>
+              <Input
+                disabled={isSubmitting}
+                id="address"
+                type="text"
+                placeholder="Enter your address"
+                {...register("address")}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="installedAt">Installed At</Label>
+
+              <Select>
+                <SelectTrigger
+                  disabled={isSubmitting}
+                  id="installedAt"
+                  {...register("installedAt")}
+                  className="w-[180px]"
+                >
+                  <SelectValue placeholder="Installed At" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Fruits</SelectLabel>
+                    <SelectItem value="home">Home</SelectItem>
+                    <SelectItem value="office">Office</SelectItem>
+                    <SelectItem value="factory">Factory</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="remarks">Remarks</Label>
+              <textarea
+                disabled={isSubmitting}
+                id="remarks"
+                className="flex h-20 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                placeholder="Enter any additional remarks"
+                {...register("remarks")}
+              />
             </div>
             <DialogFooter className="sm:justify-start flex gap-2 flex-row">
               <DialogClose onClick={() => reset()} asChild>
