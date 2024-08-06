@@ -92,45 +92,57 @@ const SolarCalculator: React.FC = () => {
     useState<CalculationResult | null>(null);
     const [key, setKey] = useState(0);
     function onSubmit(data: z.infer<typeof FormSchema>) {
-      const { state, customerType, monthlyBill } = data;
+        const { state, customerType, monthlyBill } = data;
 
-      const residentialTariff = 5;
-      const commercialTariff = 8;
-      const governmentIncentive = 0.4; // 40% subsidy
+        // Constants
+        const perDayGenerationPerKW = 4; // kWh
+        const daysInYear = 365;
+        const electricityPrice = 11; // Rs per kWh
+        const averagePriceFor1kW = 63000; // Rs
 
-      const systemSize =
-        monthlyBill /
-        (solarIrradianceData[state] *
-          30 *
-          (customerType === "residential"
-            ? residentialTariff
-            : commercialTariff));
+        // Calculate system size (assuming monthly bill is in Rs)
+        const yearlyBill = monthlyBill * 12;
+        const systemSize = Math.ceil(yearlyBill / (perDayGenerationPerKW * daysInYear * electricityPrice));
 
-      const systemCost = systemSize * 50000;
-      const incentiveAmount = Math.min(systemCost * governmentIncentive, 78000); // Capped at ₹78,000
-      const netCost = systemCost - incentiveAmount;
+        // Calculate system cost
+        const systemCost = systemSize * averagePriceFor1kW;
 
-      const annualGeneration = systemSize * solarIrradianceData[state] * 365;
-      const annualSavings =
-        customerType === "residential"
-          ? annualGeneration * residentialTariff
-          : annualGeneration * commercialTariff;
+        // Calculate government incentive
+        let incentiveAmount;
+        if (systemSize <= 1) {
+          incentiveAmount = 30000;
+        } else if (systemSize <= 2) {
+          incentiveAmount = 60000;
+        } else {
+          incentiveAmount = 78000;
+        }
 
-      const paybackPeriod = netCost / annualSavings;
-      const roi = (annualSavings / netCost) * 100;
+        // Calculate net cost
+        const netCost = systemCost - incentiveAmount;
 
-      const result: CalculationResult = {
-        systemSize,
-        systemCost,
-        incentiveAmount,
-        netCost,
-        annualSavings,
-        paybackPeriod,
-        roi,
-      };
+        // Calculate annual savings
+        const yearlyGenerationPerKW = perDayGenerationPerKW * daysInYear;
+        const totalSystemGeneration = systemSize * yearlyGenerationPerKW;
+        const annualSavings = totalSystemGeneration * electricityPrice;
 
-      setCalculationResult(result);
-    }
+        // Calculate payback period
+        const paybackPeriod = netCost / annualSavings;
+
+        // Calculate ROI (Return on Investment)
+        const roi = (annualSavings / netCost) * 100;
+
+        const result: CalculationResult = {
+          systemSize,
+          systemCost,
+          incentiveAmount,
+          netCost,
+          annualSavings,
+          paybackPeriod,
+          roi,
+        };
+
+        setCalculationResult(result);
+      }
     function resetForm() {
       form.reset();
       setKey((prevKey) => prevKey + 1); // Add this line
@@ -150,20 +162,22 @@ const SolarCalculator: React.FC = () => {
           </Heading>
         </div>
         <Form key={key} {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex gap-6 flex-col">
+           <div className="space-y-6 flex gap-6 flex-row">
             <FormField
               control={form.control}
               name="state"
+              c
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Select Your State</FormLabel>
+                <FormItem className="w-full">
+                   <FormLabel  >Select Your State</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select your state" />
+                      <SelectTrigger  style={{border:'2px solid #1c02ad',borderRadius:'8px'}} className="border-0 rounded-none shadow-none " >
+                        <SelectValue className="bg-primary-200 text-secondary-500" placeholder="Select your state" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -183,37 +197,42 @@ const SolarCalculator: React.FC = () => {
               control={form.control}
               name="customerType"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Select Customer Type</FormLabel>
+                <FormItem className="w-full">
+                  <FormLabel   >Select Customer Type</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger  style={{border:'2px solid #1c02ad',borderRadius:'8px'}} className="border-0 rounded-none shadow-none " >
                         <SelectValue placeholder="Select customer type" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       <SelectItem value="residential">Residential</SelectItem>
+                      <SelectItem value="institutional">Institutional</SelectItem>
+                      <SelectItem value="industrial">Industrial</SelectItem>
                       <SelectItem value="commercial">Commercial</SelectItem>
+                      <SelectItem value="government">Government</SelectItem>
+                      <SelectItem value="Social Sector">Social Sector</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
                 </FormItem>
               )}
             />
-
+</div>
             <FormField
               control={form.control}
               name="monthlyBill"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
+                  <FormLabel  >
                     Enter Your Average Monthly Electricity Bill (₹)
                   </FormLabel>
                   <FormControl>
                     <Input
+                     style={{border:'2px solid #1c02ad',borderRadius:'8px'}} className="border-0 rounded-none shadow-none "
                       type="number"
                       value={field.value}
                       onChange={field.onChange}
@@ -224,7 +243,7 @@ const SolarCalculator: React.FC = () => {
               )}
             />
 
-            <Button variant={"secondary"} type="submit">
+            <Button variant={"secondary"} style={{height:'45px'}} type="submit">
               Calculate Savings
             </Button>
           </form>
@@ -241,7 +260,7 @@ const SolarCalculator: React.FC = () => {
                 <p>System Size: {calculationResult.systemSize.toFixed(2)} kW</p>
                 <p>System Cost: ₹{calculationResult.systemCost.toFixed(2)}</p>
                 <p>
-                  Government Incentive: ₹
+                  Government Subsidy: ₹
                   {calculationResult.incentiveAmount.toFixed(2)}
                 </p>
                 <p>Net Cost: ₹{calculationResult.netCost.toFixed(2)}</p>

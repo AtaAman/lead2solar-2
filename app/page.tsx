@@ -16,21 +16,21 @@ export default function Home() {
   return (
     <main className="no-scrollbar">
       <Hero />
-      <div id="about-us">
+      <div id="process" className="p-2 sm:p-4 bg-secondary-950">
         <AboutUs />{" "}
       </div>
       <div id="process" className="p-2 sm:p-4 bg-secondary-950">
         <Features />
       </div>
       {/* <Metrics /> */}
-      <div className="p-2 sm:p-4">
+      <div className="p-2 sm:p-4 bg-beige-primary">
         <Testimonials />
       </div>
       <div id="estimate" className="p-2 sm:p-4 bg-secondary-950">
         <SolarCalculator />
       </div>
       {/* <OurExpert /> */}
-      <div className="p-2 sm:p-4 ">
+      <div className="p-2 sm:p-4 bg-beige-primary">
         <NewLetter />
       </div>
       {/* <Blog /> */}

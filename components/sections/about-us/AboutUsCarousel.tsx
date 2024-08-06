@@ -19,13 +19,13 @@ function AboutUsCarousel({ images }: { images: { url: string }[] }) {
       infiniteLoop
       autoPlay
       centerSlidePercentage={90}
-      className="h-full cursor-grabbing"
+      className="h-full w-full cursor-grabbing"
     >
       {Array.from({ length: 12 }).map((image, index) => {
         return (
           <div
             key={index}
-            className="w-full h-[450px] aspect-[4/3] sm:h-[500px]"
+            className="w-full  h-[450px] aspect-[4/3] sm:h-[500px]"
           >
             <img
               src={`/images/image-${index + 1}.jpeg`}
