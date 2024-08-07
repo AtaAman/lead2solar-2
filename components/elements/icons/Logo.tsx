@@ -1,3 +1,3 @@
 export const Logo = () => {
-  return <div className="text-white">Logo</div>;
+  return <img src="/logo.png" alt="Logo" className="h-12" />
 };

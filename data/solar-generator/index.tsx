@@ -62,19 +62,25 @@ const solarIrradianceData: SolarIrradianceData = {
 };
 
 const FormSchema = z.object({
-  state: z.string({
-    required_error: "Please select your state.",
-  }),
-  customerType: z.string({
-    required_error: "Please select your customer type.",
-  }),
-  monthlyBill: z.coerce
-    .number({
-      required_error:
-        "Please enter your average monthly electricity bill in rupees.",
-    })
-    .min(1, "Monthly bill must be greater than zero."),
-});
+    state: z.string({
+      required_error: "Please select your state.",
+    }),
+    customerType: z.string({
+      required_error: "Please select your customer type.",
+    }),
+    monthlyBill: z.coerce
+      .number({
+        required_error:
+          "Please enter your average monthly electricity bill in rupees.",
+      })
+      .min(1, "Monthly bill must be greater than zero."),
+    phoneNumber: z.string({
+      required_error: "Please enter your 10-digit phone number.",
+    }).regex(/^[0-9]{10}$/, "Phone number must be a 10-digit number."),
+    pincode: z.string({
+      required_error: "Please enter your 6-digit pincode.",
+    }).regex(/^[0-9]{6}$/, "Pincode must be a 6-digit number."),
+  });
 interface CalculationResult {
   systemSize: number;
   systemCost: number;
@@ -163,7 +169,7 @@ const SolarCalculator: React.FC = () => {
         </div>
         <Form key={key} {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex gap-6 flex-col">
-           <div className="space-y-6 flex gap-6 flex-row">
+           <div className="space-y-6 flex gap-6 flex-row md:flex-col ">
             <FormField
               control={form.control}
               name="state"
@@ -221,11 +227,12 @@ const SolarCalculator: React.FC = () => {
               )}
             />
 </div>
+<div className="space-y-6 flex gap-6 flex-row md:flex-col ">
             <FormField
               control={form.control}
               name="monthlyBill"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="w-full">
                   <FormLabel  >
                     Enter Your Average Monthly Electricity Bill (₹)
                   </FormLabel>
@@ -233,6 +240,7 @@ const SolarCalculator: React.FC = () => {
                     <Input
                      style={{border:'2px solid #1c02ad',borderRadius:'8px'}} className="border-0 rounded-none shadow-none "
                       type="number"
+                      placeholder="Enter your average monthly electricity bill"
                       value={field.value}
                       onChange={field.onChange}
                     />
@@ -240,7 +248,46 @@ const SolarCalculator: React.FC = () => {
                   <FormMessage />
                 </FormItem>
               )}
+            /><FormField
+      control={form.control}
+      name="pincode"
+      render={({ field }) => (
+        <FormItem className="w-full">
+          <FormLabel>Pincode</FormLabel>
+          <FormControl>
+            <Input
+            placeholder="10001"
+              style={{border:'2px solid #1c02ad',borderRadius:'8px'}} className="border-0 rounded-none shadow-none"
+              type="text"
+              value={field.value}
+              onChange={field.onChange}
             />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+    </div>
+<FormField
+      control={form.control}
+      name="phoneNumber"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Phone Number</FormLabel>
+          <FormControl>
+            <Input
+            placeholder="1234567890"
+              style={{border:'2px solid #1c02ad',borderRadius:'8px'}} className="border-0 rounded-none shadow-none"
+              type="tel"
+              value={field.value}
+              onChange={field.onChange}
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+
 
             <Button variant={"secondary"} style={{height:'45px'}} type="submit">
               Calculate Savings

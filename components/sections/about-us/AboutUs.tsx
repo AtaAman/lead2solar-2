@@ -14,10 +14,10 @@ export const AboutUs = async () => {
     "Exceptional customer service",
   ];
   return (
-    <Section className="bg-secondary-950">
+    <Section className="bg-secondary-950 rounded-3xl">
       <Container>
         <SubTitle subTitle={aboutUs.tagline} />
-        <div className="grid xl:grid-cols-2 gap-12 md:gap-36">
+        <div className="grid xl:grid-cols-2 gap-12 md:gap-24">
           <div className="flex justify-center flex-col gap-6">
             <Heading as="h2" className="text-section leading-none text-white">
               Why Choose Lead2Solar

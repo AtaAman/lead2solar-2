@@ -21,15 +21,14 @@ function AboutUsCarousel({ images }: { images: { url: string }[] }) {
       centerSlidePercentage={90}
       className="h-full w-full cursor-grabbing"
     >
-      {Array.from({ length: 12 }).map((image, index) => {
+      {Array.from({ length: 5 }).map((image, index) => {
         return (
           <div
             key={index}
-            className="w-full  h-[450px] aspect-[4/3] sm:h-[500px]"
+            className="w-full  h-[450px]  sm:h-[300px]"
           >
-            <img
-              src={`/images/image-${index + 1}.jpeg`}
-              alt="About Us Image"
+            <img src={`/images/about-us/about-us-${index+1}.png`}
+              alt={`About Us ${index+1} `}
               className="w-full object-cover h-full rounded-3xl"
             />
           </div>

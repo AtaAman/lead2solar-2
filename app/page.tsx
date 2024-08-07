@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <main className="no-scrollbar">
       <Hero />
-      <div id="process" className="p-2 sm:p-4 bg-secondary-950">
+      <div id="process" className="p-2 sm:p-4 bg-beige-primary">
         <AboutUs />{" "}
       </div>
       <div id="process" className="p-2 sm:p-4 bg-secondary-950">
