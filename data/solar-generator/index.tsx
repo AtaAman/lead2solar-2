@@ -167,7 +167,6 @@ const SolarCalculator: React.FC = () => {
             <FormField
               control={form.control}
               name="state"
-              c
               render={({ field }) => (
                 <FormItem className="w-full">
                    <FormLabel  >Select Your State</FormLabel>
