@@ -16,16 +16,16 @@ export default function Home() {
   return (
     <main className="no-scrollbar">
       <Hero />
-      <div id="process" className="p-2 sm:p-4 bg-beige-primary">
+      <div id="about-us" className="p-2 sm:p-4 bg-beige-primary">
         <AboutUs />{" "}
       </div>
       <div id="process" className="p-2 sm:p-4 bg-secondary-950">
         <Features />
       </div>
       {/* <Metrics /> */}
-      <div className="p-2 sm:p-4 bg-beige-primary">
+      {/* <div className="p-2 sm:p-4 bg-beige-primary">
         <Testimonials />
-      </div>
+      </div> */}
       <div id="estimate" className="p-2 sm:p-4 bg-secondary-950">
         <SolarCalculator />
       </div>

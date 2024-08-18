@@ -10,9 +10,7 @@ import Marquee from "react-fast-marquee";
 
 import { GetAQuote } from "@/components/elements/get-a-quote";
 
-const Hero = async () => {
-  const data = await getHomepage();
-
+const Hero =  () => {
   return (
     <Section className="bg-secondary-950 h-fit py-28 flex flex-col gap-32">
       <Container className="h-1/2 flex justify-center items-center">
@@ -20,7 +18,7 @@ const Hero = async () => {
           <div className="text-white">
             <Heading
               as="h1"
-              className="md:text-hero text-5xl mt-10 md:mt-0 leading-none"
+              className="md:text-hero text-5xl mt-10 md:mt-20 leading-none"
             >
               Switch to Solar and Save Big on Your Energy Bills!
             </Heading>

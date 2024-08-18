@@ -4,10 +4,10 @@ import Link from "next/link";
 
 const footerLinks = [
   {
-    title: "Platform",
     links: [
-      { label: "Solutions", href: "/" },
-      { label: "How it works", href: "/" },
+      { label: "About Us", href: "#about-us" },
+      { label: "Process", href: "#process" },
+      { label: "Estimate", href: "#estimate" },
     ],
   },
 ];
@@ -55,7 +55,6 @@ export const Footer = () => {
               <div>
                 {footerLinks.map((section, index) => (
                   <ul key={index} className="list-none text-white flex flex-col sm:flex-row gap-4 sm:gap-8">
-                    <li className="text-white font-semibold">{section.title}</li>
                     {section.links.map((link, linkIndex) => (
                       <li key={linkIndex}>
                         <Link href={link.href} className="text-white/80 hover:text-white transition-colors">
@@ -67,7 +66,7 @@ export const Footer = () => {
                 ))}
               </div>
               <div className="mt-4 sm:mt-0">
-                <p className="text-white/60 text-sm">© 2024 Your Company. All rights reserved.</p>
+                <p className="text-white/60 text-sm">© 2024 Lead2Solar. All rights reserved.</p>
               </div>
             </div>
           </div>

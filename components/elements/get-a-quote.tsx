@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./input";
@@ -48,6 +48,7 @@ export function GetAQuote({ children }: { children: any }) {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors, isSubmitted, isSubmitting, isSubmitSuccessful },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -184,26 +185,28 @@ export function GetAQuote({ children }: { children: any }) {
             </div>
             <div className="flex flex-col gap-2">
               <Label htmlFor="installedAt">Installed At</Label>
-
-              <Select>
-                <SelectTrigger
-                  disabled={isSubmitting}
-                  id="installedAt"
-                  {...register("installedAt")}
-                  className="w-[180px]"
-                >
-                  <SelectValue placeholder="Installed At" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-
-                    <SelectItem value="home">Home</SelectItem>
-                    <SelectItem value="office">Office</SelectItem>
-                    <SelectItem value="factory">Factory</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
+              <Controller
+  name="installedAt"
+  control={control}
+  render={({ field }) => (
+    <Select onValueChange={field.onChange} value={field.value}>
+      <SelectTrigger disabled={isSubmitting} id="installedAt" className="w-[180px]">
+        <SelectValue placeholder="Installed At" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectItem value="home">Home</SelectItem>
+          <SelectItem value="office">Office</SelectItem>
+          <SelectItem value="factory">Factory</SelectItem>
+          <SelectItem value="other">Other</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  )}
+/>
+              {errors.installedAt && (
+  <span className="text-red-500 text-sm">{errors.installedAt.message}</span>
+)}
             </div>
             <div className="flex flex-col gap-2">
               <Label htmlFor="remarks">Message us</Label>

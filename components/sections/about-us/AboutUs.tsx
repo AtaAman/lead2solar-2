@@ -2,10 +2,7 @@ import { Check, Container, Heading, Section, SubTitle } from "@/components";
 import { getHomepage } from "@/sanity/queries/page";
 import AboutUsCarousel from "./AboutUsCarousel";
 
-export const AboutUs = async () => {
-  const data = await getHomepage();
-
-  const { aboutUs } = data;
+export const AboutUs =  () => {
   const checkpoints = [
     "High-efficiency solar panels",
     "Expert installation with minimal disruption",
@@ -16,7 +13,7 @@ export const AboutUs = async () => {
   return (
     <Section className="bg-secondary-950 rounded-3xl">
       <Container>
-        <SubTitle subTitle={aboutUs.tagline} />
+        <SubTitle subTitle={'About Us'} />
         <div className="grid xl:grid-cols-2 gap-12 md:gap-24">
           <div className="flex justify-center flex-col gap-6">
             <Heading as="h2" className="text-section leading-none text-white">
@@ -33,7 +30,7 @@ export const AboutUs = async () => {
             </ul>
           </div>
           <div className="col-span-1">
-            <AboutUsCarousel images={aboutUs.slider} />
+            <AboutUsCarousel  />
           </div>
         </div>
       </Container>

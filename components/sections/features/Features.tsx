@@ -6,7 +6,7 @@ export const capitalized = (name: any) => {
   return name.charAt(0).toUpperCase() + name.slice(1);
 };
 
-export const Features = async () => {
+export const Features =  () => {
   const solutions = [
     {
       header: "Step 1",
