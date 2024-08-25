@@ -2,19 +2,16 @@ export const revalidate = 0;
 
 import {
   AboutUs,
-  Blog,
   Features,
   Hero,
-  Metrics,
   NewLetter,
-  OurExpert,
   Testimonials,
 } from "@/components";
 import SolarCalculator from "@/data/solar-generator";
 
 export default function Home() {
   return (
-    <main className="no-scrollbar">
+    <main className="">
       <Hero />
       <div id="about-us" className="p-2 sm:p-4 bg-beige-primary">
         <AboutUs />{" "}

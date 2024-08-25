@@ -25,11 +25,11 @@ function AboutUsCarousel() {
         return (
           <div
             key={index}
-            className="w-full  h-[450px]  sm:h-[300px]"
+            className="w-full  h-[450px] rounded-xl overflow-hidden bg-green-200 sm:h-[300px]"
           >
-            <img src={`/images/about-us/about-us-${index+1}.png`}
+            <img src={`/images/about-us/about-us-${index+1}.webp`}
               alt={`About Us ${index+1} `}
-              className="w-full object-cover h-full rounded-3xl"
+              className="w-full object-cover h-full "
             />
           </div>
         );

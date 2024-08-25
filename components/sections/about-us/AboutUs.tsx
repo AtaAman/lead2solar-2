@@ -1,5 +1,4 @@
 import { Check, Container, Heading, Section, SubTitle } from "@/components";
-import { getHomepage } from "@/sanity/queries/page";
 import AboutUsCarousel from "./AboutUsCarousel";
 
 export const AboutUs =  () => {
@@ -20,7 +19,7 @@ export const AboutUs =  () => {
               Why Choose Lead2Solar
             </Heading>
             {/* <p className="text-white">{aboutUs.excerpt}</p> */}
-            <ul className="mt-4 grid grid-cols-2 xl:grid-cols-1 gap-4">
+            <ul className="mt-4 grid grid-cols-1 gap-4">
               {checkpoints.map((checkpoint, index) => (
                 <li key={index} className="flex items-center gap-3 text-white">
                   <Check />

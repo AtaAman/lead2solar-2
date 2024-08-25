@@ -3,9 +3,6 @@ export const revalidate = 0;
 
 import { Button, Heading } from "@/components/elements";
 import { Container, Section } from "@/components/layouts";
-import { getHomepage } from "@/sanity/queries/page";
-import Image from "next/image";
-import Link from "next/link";
 import Marquee from "react-fast-marquee";
 
 import { GetAQuote } from "@/components/elements/get-a-quote";
@@ -34,19 +31,23 @@ const Hero =  () => {
           </div>
         </div>
       </Container>
-      <div className="w-full col-span-2 h-1/2">
-        <Marquee autoFill>
-          <div className="flex justify-center gap-6 items-start mx-3">
-            {Array.from({ length: 4 }).map((image, index) => (
-              <div key={index} className=" h-64 overflow-hidden">
-                <img
-                  src={`/images/hero/main-${index+1}.jpg`}
-                  alt={`Hero Image ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+      <div className="w-full col-span-2 min-h-64 h-1/2">
+        <Marquee  autoFill>
+         <div className="flex justify-center gap-6 items-start mx-3">
+      {Array.from({ length: 4 }).map((_, index) => (
+        <div
+          key={index}
+          className="h-64 aspect-video overflow-hidden bg-primary-200  relative"
+        >
+          <img
+            src={`/images/hero/main-${index + 1}.webp`}
+            alt={`Hero Image ${index + 1}`}
+            className="w-full h-full object-cover absolute top-0 left-0"
+
+          />
+        </div>
+      ))}
+    </div>
         </Marquee>
       </div>
     </Section>

@@ -32,11 +32,11 @@ export const Footer = () => {
               <div className="mb-6 sm:mb-0">
                 <Logo />
               </div>
-              <div className="flex flex-wrap justify-center sm:justify-end gap-4">
+              <div className="flex flex-wrap justify-start gap-4">
                 {socialLinks.map((social, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-2 p-1 bg-white/25 rounded-full"
+                    className="flex w-full md:w-fit items-center gap-2 p-1 bg-white/25 rounded-full"
                   >
                     <span className="bg-primary-300 p-2 flex items-center justify-center rounded-full">
                       {social.icon}

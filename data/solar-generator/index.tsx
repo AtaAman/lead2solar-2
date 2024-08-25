@@ -228,14 +228,14 @@ console.log(`(logs) > response:`, response);
                                 name="customerType"
                                 render={({ field }) => (
                                     <FormItem className="w-full">
-                                        <FormLabel   >Select Customer Type</FormLabel>
+                                        <FormLabel>Select Customer Type</FormLabel>
                                         <Select
                                             onValueChange={field.onChange}
                                             defaultValue={field.value}
                                         >
                                             <FormControl>
                                                 <SelectTrigger style={{ border: '2px solid #143109', borderRadius: '8px' }} className="border-0 rounded-none shadow-none " >
-                                                    <SelectValue placeholder="Select customer type" />
+                                                    <SelectValue placeholder="Customer type" />
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
@@ -252,7 +252,7 @@ console.log(`(logs) > response:`, response);
                                 )}
                             />
                         </div>
-                        <div className="space-y-6 flex gap-6 flex-row md:flex-col ">
+                        <div className="space-y-6 flex gap-6 flex-col ">
                             <FormField
                                 control={form.control}
                                 name="monthlyBill"

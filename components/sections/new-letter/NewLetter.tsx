@@ -14,9 +14,9 @@ export const NewLetter = () => {
           <div className="flex sm:flex-row flex-col sm:gap-3 sm:items-center justify-center">
             <input
               placeholder="Your e-mail"
-              className="py-3 px-6 rounded-full sm:w-[330px] mb-3 sm:mb-0"
+              className="py-3 px-6 bg-beige-primary border-secondary-700 border-2 placeholder:text-secondary-700 rounded-full sm:w-[330px] mb-3 sm:mb-0"
             />
-            <button className="px-6 py-3 whitespace-nowrap bg-primary-950 rounded-full text-white">
+            <button className="px-6 py-3 whitespace-nowrap bg-secondary-950 rounded-full text-white">
               Claim Your Discount
             </button>
           </div>

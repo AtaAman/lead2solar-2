@@ -40,25 +40,25 @@ export const Features =  () => {
         />
         <div>
           <div className="mb-12 sm:mb-24">
-            <Heading as="h2" className="text-section leading-none">
+            <Heading as="h2" className="text-title leading-none">
               Go Solar in Just 3 Easy Steps
             </Heading>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 xl:grid-cols-3">
+          <div className="grid md:grid-cols-2 gap-10 xl:grid-cols-3">
             {solutions.map((item: any, index: number) => {
               return (
-                <div key={index} className="flex flex-col gap-6 items-start">
+                <div key={index} className="flex duration-100  hover:shadow-md p-6 rounded-xl hover:bg-secondary-900 hover:text-white flex-col gap-6 items-start">
                   <Heading
-                    className="bg-primary-500 px-4 py-2 rounded-full"
+                    className="bg-primary-500  px-4 py-2 rounded-full"
                     as="h4"
                   >
                     {item.header}
                   </Heading>
                   <div>
-                    <Heading as="h3" className="text-title leading-none mb-4">
+                    <div className=" text-3xl whitespace-pre-wrap  leading-none mb-4">
                       {item.heading}
-                    </Heading>
-                    <p className="text-neutral-800">{item.excerpt}</p>
+                    </div>
+                    <p className="opacity-50">{item.excerpt}</p>
                   </div>
                   {item.cta && (
                     <button className="text-primary-950">
