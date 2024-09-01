@@ -1,17 +1,20 @@
 {
-  "header": [
-    {
-      "label": "about us",
-      "href": "#about-us"
-    },
-    {
-      "label": "Process",
-      "href": "#process"
-    },
-
-    {
-      "label": "Estimate",
-      "href": "#estimate"
-    }
-  ]
+    "header": [
+        {
+            "label": "about us",
+            "href": "#about-us"
+        },
+        {
+            "label": "Process",
+            "href": "#process"
+        },
+        {
+            "label": "Estimate",
+            "href": "#estimate"
+        },
+        {
+            "label": "FAQ",
+            "href": "#frequently-asked-questions"
+        }
+    ]
 }

@@ -9,21 +9,20 @@ import { GetAQuote } from "@/components/elements/get-a-quote";
 
 const Hero =  () => {
   return (
-    <Section className="bg-secondary-950 h-fit py-28 flex flex-col gap-32">
+    <Section className="bg-secondary-950 h-fit py-20 flex flex-col gap-20">
       <Container className="h-1/2 flex justify-center items-center">
         <div className="flex flex-col text-center items-center gap-10">
           <div className="text-white">
             <Heading
               as="h1"
-              className="md:text-hero text-5xl mt-10 md:mt-20 leading-none"
+            className="md:text-7xl  mt-10 md:mt-14 leading-none"
             >
               Switch to Solar and Save Big on Your Energy Bills!
             </Heading>
           </div>
-          <div className=" flex gap-4 flex-col text-center items-center ">
+          <div className=" flex w-2/3 mx-auto gap-4 flex-col text-center items-center ">
             <p className="text-sub-title  text-white ">
-              Join the renewable energy revolution with Lead2Solar`s top-notch
-              rooftop solar installations
+             Get exclusive deals from top nearby local installers! Join the renewable energy revolution with Lead2Solar.
             </p>
             <GetAQuote>
               <Button variant="secondary">Get Your Free Quote Now</Button>

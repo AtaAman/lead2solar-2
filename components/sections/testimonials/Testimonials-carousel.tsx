@@ -76,7 +76,7 @@ export const TestimonialsCarousel = () => {
             <p className="text-left min-h-[180px]">{user.excerpt}</p>
             <div className="flex gap-6 items-center sm:flex-row flex-col ">
               <div className="h-[56px] w-[56px] shrink-0 relative">
-                <Image
+                <image
                   src={user.image}
                   alt="Expert Image"
                   width={90}

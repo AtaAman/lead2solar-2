@@ -7,6 +7,8 @@ import {
   NewLetter,
   Testimonials,
 } from "@/components";
+import FAQ from "@/components/sections/faq-section";
+import HowItWorks from "@/components/sections/how-it-works";
 import SolarCalculator from "@/data/solar-generator";
 
 export default function Home() {
@@ -20,14 +22,17 @@ export default function Home() {
         <Features />
       </div>
       {/* <Metrics /> */}
-      {/* <div className="p-2 sm:p-4 bg-beige-primary">
-        <Testimonials />
-      </div> */}
+      <div className="p-2 sm:p-4 bg-beige-primary">
+        <HowItWorks />
+      </div>
       <div id="estimate" className="p-2 sm:p-4 bg-secondary-950">
         <SolarCalculator />
       </div>
       {/* <OurExpert /> */}
-      <div className="p-2 sm:p-4 bg-beige-primary">
+       <div id={'frequently-asked-questions'} className="p-2 sm:p-4 bg-beige-primary">
+        <FAQ />
+      </div>
+      <div className="p-2 sm:p-4  bg-secondary-950">
         <NewLetter />
       </div>
       {/* <Blog /> */}
