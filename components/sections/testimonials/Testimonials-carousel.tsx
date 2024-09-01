@@ -1,7 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useWindScreenowSize } from "@/hooks/useWindowSize";
-
-import Image from "next/image";
 import { Carousel } from "react-responsive-carousel";
 export const TestimonialsCarousel = () => {
   const size = useWindScreenowSize();
@@ -76,7 +75,7 @@ export const TestimonialsCarousel = () => {
             <p className="text-left min-h-[180px]">{user.excerpt}</p>
             <div className="flex gap-6 items-center sm:flex-row flex-col ">
               <div className="h-[56px] w-[56px] shrink-0 relative">
-                <image
+                <img
                   src={user.image}
                   alt="Expert Image"
                   width={90}
