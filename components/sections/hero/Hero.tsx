@@ -11,17 +11,17 @@ const Hero =  () => {
   return (
     <Section className="bg-secondary-950 h-fit py-20 flex flex-col gap-20">
       <Container className="h-1/2 flex justify-center items-center">
-        <div className="flex flex-col text-center items-center gap-10">
+        <div className="flex flex-col text-center items-center gap-6">
           <div className="text-white">
             <Heading
               as="h1"
-            className="md:text-7xl  mt-10 md:mt-14 leading-none"
+            className=" text-title md:text-7xl  mt-28 md:mt-14 leading-none"
             >
               Switch to Solar and Save Big on Your Energy Bills!
             </Heading>
           </div>
-          <div className=" flex w-2/3 mx-auto gap-4 flex-col text-center items-center ">
-            <p className="text-sub-title  text-white ">
+          <div className=" flex lg:w-2/3 mx-auto gap-4 flex-col text-center items-center ">
+            <p className=" text-white ">
              Get exclusive deals from top nearby local installers! Join the renewable energy revolution with Lead2Solar.
             </p>
             <GetAQuote>

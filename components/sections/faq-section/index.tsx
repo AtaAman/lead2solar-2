@@ -70,7 +70,7 @@ export default function FAQ() {
                 <Accordion  type="single" collapsible className="w-full mt-8">
                     {faqs.map((faq, index) => (
                         <AccordionItem key={index} value={`item-${index}`}>
-                            <AccordionTrigger className='text-primary-50 text-xl'>{index+1}) {faq.question}</AccordionTrigger>
+                            <AccordionTrigger className='text-primary-50 text-left text-xl'>{index+1}) {faq.question}</AccordionTrigger>
                             <AccordionContent className='text-md text-beige-primary opacity-70 text-md pl-2'>
                             <i>
                                    {faq.answer}
