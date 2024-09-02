@@ -10,7 +10,7 @@ export const Features =  () => {
   const solutions = [
     {
       header: "Step 1",
-      heading: "Get a Free Quote from us",
+      heading: "Get a Free Quote from Nearby Installers",
       excerpt: "Request a free quote to discover your solar savings potential.",
       icon: "quoteIcon",
     },
@@ -31,23 +31,22 @@ export const Features =  () => {
   ];
 
   return (
-    <Section className="bg-[#FFF7ED] rounded-3xl">
+    <Section className="bg-secondary-950 rounded-3xl">
       <Container>
         <SubTitle
-          dark
           subTitle="Our Simple 3-Step Process"
-          className="text-primary-950"
+          className="text-secondary-50"
         />
         <div>
-          <div className="mb-12 sm:mb-24">
-            <Heading as="h2" className="text-title leading-none">
+          <div className="mb-12 sm:mb-20">
+            <Heading as="h2" className="text-title text-primary-50 leading-none">
               Go Solar in Just 3 Easy Steps
             </Heading>
           </div>
           <div className="grid md:grid-cols-2 gap-10 xl:grid-cols-3">
             {solutions.map((item: any, index: number) => {
               return (
-                <div key={index} className="flex duration-100  hover:shadow-md p-6 rounded-xl hover:bg-secondary-900 hover:text-white flex-col gap-6 items-start">
+                <div key={index} className="flex duration-100  hover:shadow-md p-6 rounded-xl hover:bg-secondary-900  flex-col gap-6 items-start">
                   <Heading
                     className="bg-primary-500  px-4 py-2 rounded-full"
                     as="h4"
@@ -55,10 +54,10 @@ export const Features =  () => {
                     {item.header}
                   </Heading>
                   <div>
-                    <div className=" text-3xl whitespace-pre-wrap  leading-none mb-4">
+                    <div className=" text-3xl whitespace-pre-wrap text-primary-600  leading-none mb-4">
                       {item.heading}
                     </div>
-                    <p className="opacity-50">{item.excerpt}</p>
+                    <p className="opacity-50 text-secondary-50">{item.excerpt}</p>
                   </div>
                   {item.cta && (
                     <button className="text-primary-950">

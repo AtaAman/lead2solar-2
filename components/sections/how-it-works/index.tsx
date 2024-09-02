@@ -4,9 +4,12 @@ import React from 'react'
 
 function HowItWorks() {
     return (
-        <Section className="bg-secondary-950 rounded-3xl py-16">
+        <Section className="bg-[#FFF7ED] rounded-3xl py-16">
             <Container>
-                <SubTitle subTitle={'Why Go Solar'} />
+                <SubTitle
+                dark
+          className="text-primary-950"
+                subTitle={'Why Go Solar'} />
 
                 <div className="flex flex-col gap-8">
                     <ReasonCard
@@ -30,11 +33,11 @@ function HowItWorks() {
 function ReasonCard({ title, description }: { title: string, description: string }) {
     return (
         <div className="rounded-xl py-6 ">
-             <Heading as="h3" className="text-section leading-none mb-2 text-primary-300">
+             <Heading as="h3" className="text-section leading-none mb-2 text-secondary-900">
                   {title}
                     </Heading>
 
-            <p className="text-gray-300 ml-4">{description}</p>
+            <p className="text-gray-500 ml-4">{description}</p>
         </div>
     )
 }

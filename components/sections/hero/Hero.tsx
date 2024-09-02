@@ -36,7 +36,7 @@ const Hero =  () => {
       {Array.from({ length: 4 }).map((_, index) => (
         <div
           key={index}
-          className="h-64 aspect-video overflow-hidden bg-primary-200  relative"
+          className="h-64 aspect-video rounded-lg overflow-hidden bg-primary-200  relative"
         >
           <img
             src={`/images/hero/main-${index + 1}.webp`}

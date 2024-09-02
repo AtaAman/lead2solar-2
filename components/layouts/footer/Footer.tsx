@@ -20,7 +20,7 @@ const socialLinks = [
 
 export const Footer = () => {
     return (
-        <div className="p-4 bg-beige-primary">
+        <div className="p-4 bg-secondary-950">
             <footer className="bg-secondary-950 rounded-3xl py-12 sm:py-16 relative overflow-hidden">
                 <div className="absolute h-full top-0">
                     <FooterBg />
