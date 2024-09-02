@@ -353,7 +353,7 @@ console.log(`(logs) > response:`, response);
                                 )}
                             />
                         </div>
-                        <Button className="bg-secondary-950 text-white" variant={"secondary"} style={{ height: '45px' }} type="submit">
+                        <Button className=" text-white" variant={"secondary"} style={{ height: '45px' }} type="submit">
                             Calculate Savings
                         </Button>
                     </form>
