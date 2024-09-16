@@ -67,7 +67,6 @@ function ReasonCard({ title, description }: { title: string, description: string
             <Heading as="h3" className="text-section leading-none mb-2 text-secondary-900">
                 {title}
             </Heading>
-            n
             <div className="text-gray-500 ml-4 break-before-auto text-balance p-4">{description}</div>
         </div>
     )

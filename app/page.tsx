@@ -11,8 +11,23 @@ import { GetInTouch } from "@/components/elements/get-in-touch";
 import FAQ from "@/components/sections/faq-section";
 import HowItWorks from "@/components/sections/how-it-works";
 import SolarCalculator from "@/data/solar-generator";
+// import { useEffect } from "react";
 
 export default function Home({ searchParams }: { searchParams: any }) {
+    // useEffect(() => {
+    //     const fetchRows = async () => {
+    //         const response = await fetch("/api/submitForm", {
+    //             method: "GET",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //         });
+    //         const data = await response.json();
+    //         console.log(data);
+    //     };
+    //     fetchRows();
+    // }, []);
+
     return searchParams.type ? <B2BMain /> : <B2CMain />;
 }
 
@@ -20,29 +35,21 @@ const B2BMain = () => {
     return (
         <main className="">
             <Hero isB2B />
-            <div id="about-us" className="p-2 sm:p-4 bg-beige-primary">
+            <Section id="about-us" isBeige>
                 <AboutUs isB2B />{" "}
-            </div>
-            <div className="p-2 sm:p-4 bg-secondary-950">
-                <SolarCalculator />
-            </div>
-            <div id="process" className="p-2 sm:p-4 bg-beige-primary">
-                <Features isB2B />
-            </div>
-            {/* <Metrics /> */}
-            {/* <div className="p-2 sm:p-4 bg-beige-primary">
-            </div> */}
+            </Section>
+            <Section id='process' isBeige>
 
-            <div id="estimate" className="p-2 sm:p-4 bg-secondary-950">
+                <Features isB2B /></Section>
+            <Section id="estimate">
                 <GetInTouch />
-            </div>
-
-            {/* <OurExpert /> */}
-            <div id={'frequently-asked-questions'} className="p-2 sm:p-4 bg-beige-primary">
+            </Section>
+            <Section
+                id={'frequently-asked-questions'}
+                isBeige
+            >
                 <FAQ isB2B />
-            </div>
-
-            {/* <Blog /> */}
+            </Section>
         </main>
     );
 };
@@ -51,25 +58,35 @@ const B2CMain = () => {
     return (
         <main className="">
             <Hero />
-            <div id="about-us" className="p-2 sm:p-4 bg-beige-primary">
+            <Section id="about-us" isBeige>
                 <AboutUs />{" "}
-            </div>
-            <div id="process" className="p-2 sm:p-4 bg-secondary-950">
+            </Section>
+            <Section id="process" >
                 <HowItWorks />
-            </div>
-            {/* <Metrics /> */}
-            <div className="p-2 sm:p-4 bg-beige-primary">
-                <Features />
-            </div>
-            <div id="estimate" className="p-2 sm:p-4 bg-secondary-950">
-                <SolarCalculator />
-            </div>
-            {/* <OurExpert /> */}
-            <div id={'frequently-asked-questions'} className="p-2 sm:p-4 bg-beige-primary">
-                <FAQ />
-            </div>
+            </Section>
 
-            {/* <Blog /> */}
+            <Section isBeige>
+                <Features />
+            </Section>
+            <Section id="estimate">
+                <SolarCalculator />
+            </Section>
+            <Section
+                id={'frequently-asked-questions'}
+                isBeige
+            >
+                <FAQ />
+            </Section>
+
         </main>
     );
 };
+
+const Section = ({ id, isBeige = false, children }: { id?: string, isBeige?: boolean, children: any }) => (
+    <div
+        id={id}
+        className={`p-2 sm:p-4 ${isBeige ? 'bg-beige-primary' : 'bg-secondary-950'}`}
+    >
+        {children}
+    </div>
+);
