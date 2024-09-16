@@ -4,15 +4,7 @@ import { FooterBg } from "@/components/elements/icons/FooterBg";
 import Link from "next/link";
 import headerData from "@/data/header.json";
 import { useSearchParams } from "next/navigation";
-const footerLinks = [
-    {
-        links: [
-            { label: "About Us", href: "#about-us" },
-            { label: "Process", href: "#process" },
-            { label: "Estimate", href: "#estimate" },
-        ],
-    },
-];
+
 
 const socialLinks = [
     { icon: <Facebook />, label: "Like our Facebook Page" },

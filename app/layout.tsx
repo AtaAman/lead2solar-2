@@ -2,6 +2,7 @@ import { Footer, Header } from "@/components";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Suspense } from "react";
 const myFont = localFont({
     src: "../public/HousttelySignature-GOonZ.ttf",
     variable: "--font-house",
@@ -36,12 +37,6 @@ export const metadata: Metadata = {
         locale: "en_US",
         type: "website",
     },
-
-    viewport: {
-        width: "device-width",
-        initialScale: 1,
-        maximumScale: 1,
-    },
 };
 
 export default function RootLayout({
@@ -63,7 +58,9 @@ export default function RootLayout({
             <body data-barba="wrapper" className="">
                 <Header />
                 {children}
-                <Footer />
+                <Suspense>
+                    <Footer />
+                </Suspense>
             </body>
         </html>
     );

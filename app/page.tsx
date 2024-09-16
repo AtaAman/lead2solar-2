@@ -11,7 +11,6 @@ import { GetInTouch } from "@/components/elements/get-in-touch";
 import FAQ from "@/components/sections/faq-section";
 import HowItWorks from "@/components/sections/how-it-works";
 import SolarCalculator from "@/data/solar-generator";
-import { useSearchParams } from "next/navigation";
 
 export default function Home({ searchParams }: { searchParams: any }) {
     return searchParams.type ? <B2BMain /> : <B2CMain />;
