@@ -92,7 +92,7 @@ interface CalculationResult {
     paybackPeriod: string;
     roi: string;
 }
-const SolarCalculator: React.FC = () => {
+const SolarCalculator: React.FC<{ isB2B?: boolean }> = ({ isB2B = false }) => {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
     });
@@ -148,31 +148,30 @@ const SolarCalculator: React.FC = () => {
             paybackPeriod,
             roi,
         };
-        await onSubmitToGoogleSheets({...data,...result});
+        await onSubmitToGoogleSheets({ ...data, ...result });
         setCalculationResult(result);
     }
 
 
-    const onSubmitToGoogleSheets = async (data:any) => {
+    const onSubmitToGoogleSheets = async (data: any) => {
         try {
-          const formData = { ...data, type: "estimate" };
-          const response = await fetch("/api/submitForm", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          });
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          await response.json();
-console.log(`(logs) > response:`, response);
+            const formData = { ...data, type: "estimate", pageType: isB2B ? 'B2B' : 'B2C' };
+            const response = await fetch("/api/submitForm", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            await response.json();
         } catch (error) {
-          console.error("Error submitting form:", error);
+            console.error("Error submitting form:", error);
         } finally {
         }
-      };
+    };
 
     function resetForm() {
         form.reset();
