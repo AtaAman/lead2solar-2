@@ -73,7 +73,7 @@ export const Header = () => {
 
                     {
                         isB2B ? <CompanyInquiryForm>
-                            <Button variant="tetriary-reversed">Get A Com</Button>
+                            <Button variant="tetriary-reversed">Get a Quote</Button>
                         </CompanyInquiryForm>
                             :
                             <GetAQuote>
