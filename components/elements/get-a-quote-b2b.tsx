@@ -13,7 +13,7 @@ const schema = z.object({
   name: z.string().min(1, { message: "Your Name is required" }),
   whatsappNumber: z.string().min(10, { message: "WhatsApp Number must be at least 10 digits" }),
   pinCode: z.string().min(6, { message: "Pin Code must be 6 digits" }),
-  gstNumber: z.string().min(15, { message: "GST Number must be at least 15 characters" }),
+  gstNumber: z.string(),
 });
 
 type FormValues = z.infer<typeof schema>;
