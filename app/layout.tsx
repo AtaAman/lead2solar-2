@@ -56,7 +56,9 @@ export default function RootLayout({
                 <meta name="theme-color" content="#ffffff" />
             </head>
             <body data-barba="wrapper" className="">
-                <Header />
+                <Suspense>
+                    <Header />
+                </Suspense>
                 {children}
                 <Suspense>
                     <Footer />
