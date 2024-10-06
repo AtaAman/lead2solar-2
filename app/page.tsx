@@ -1,4 +1,3 @@
-'use client'
 
 import {
     AboutUs,
@@ -9,24 +8,13 @@ import {
 } from "@/components";
 import { GetInTouch } from "@/components/elements/get-in-touch";
 import FAQ from "@/components/sections/faq-section";
+import SheetData from "@/components/sections/get-sheet-data";
 import HowItWorks from "@/components/sections/how-it-works";
 import SolarCalculator from "@/data/solar-generator";
 // import { useEffect } from "react";
 
 export default function Home({ searchParams }: { searchParams: any }) {
-    // useEffect(() => {
-    //     const fetchRows = async () => {
-    //         const response = await fetch("/api/submitForm", {
-    //             method: "GET",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //         });
-    //         const data = await response.json();
-    //         console.log(data);
-    //     };
-    //     fetchRows();
-    // }, []);
+
 
     return searchParams.type ? <B2BMain /> : <B2CMain />;
 }
@@ -38,11 +26,17 @@ const B2BMain = () => {
             <Section id="about-us" isBeige>
                 <AboutUs isB2B />{" "}
             </Section>
+            <Section
+                id={'frequently-asked-questions'}
+
+            >
+                <SheetData />
+            </Section>
             <Section id='process' isBeige>
 
                 <Features isB2B /></Section>
             <Section id="estimate">
-                <GetInTouch />
+                <GetInTouch title="Get Qualified leads today!" />
             </Section>
             <Section
                 id={'frequently-asked-questions'}
@@ -50,6 +44,7 @@ const B2BMain = () => {
             >
                 <FAQ isB2B />
             </Section>
+
         </main>
     );
 };

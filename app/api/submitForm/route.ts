@@ -19,7 +19,6 @@ export async function POST(req: Request) {
     if (isLanding) {
         values = [
             [
-
                 data.name || 'N/A',
                 data.email || 'N/A',
                 data.phone || 'N/A',
@@ -36,7 +35,6 @@ export async function POST(req: Request) {
     } else if (isB2B) {
         values = [
             [
-
                 data.companyName || 'N/A',
                 data.name || 'N/A',
                 data.whatsappNumber || 'N/A',
@@ -85,36 +83,8 @@ export async function POST(req: Request) {
 
         return Response.json({ message: "Form submitted successfully" }, { status: 200 });
     } catch (error: any) {
-        console.log(`(logs) > process.env:`, process.env);
+
         console.error("Error appending data:", error.message);
         return Response.json({ message: "Error submitting form" }, { status: 500 });
-    }
-}
-
-export async function GET(req: Request) {
-    const auth = new google.auth.JWT(
-        process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-        "",
-        process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
-        ["https://www.googleapis.com/auth/spreadsheets.readonly"]
-    );
-
-    const sheets = google.sheets({ version: "v4", auth });
-
-    const range = "Sheet1";
-    try {
-        const response = await sheets.spreadsheets.values.get({
-            spreadsheetId: process.env.GOOGLE_SPREADSHEET_ID,
-            range: range,
-        });
-
-        const rows = response.data.values;
-        if (!rows || rows.length === 0) {
-            return Response.json({ message: "No data found" }, { status: 404 });
-        }
-        return Response.json({ data: rows }, { status: 200 });
-    } catch (error: any) {
-        console.error("Error fetching data:", error);
-        return Response.json({ message: "Error fetching data" }, { status: 500 });
     }
 }

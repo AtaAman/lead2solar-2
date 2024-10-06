@@ -24,7 +24,7 @@ type FormValues = {
     message: string;
 };
 
-export function GetInTouch() {
+export function GetInTouch({title='Get in Touch With Us!'}) {
     const {
         register,
         handleSubmit,
@@ -72,7 +72,7 @@ export function GetInTouch() {
                 />
                 <div className="mb-12">
                     <Heading as="h2" className="text-section leading-none ">
-                        Get in Touch With Us!
+                      {title}
                     </Heading>
                 </div>
                 {isSubmitSuccessful ? (
