@@ -99,7 +99,7 @@ export default function SheetData() {
       Thank You.
     `;
         const encodedMessage = encodeURIComponent(message);
-        const whatsappUrl = `https://wa.me/1234567890?text=${encodedMessage}`; // Replace with actual Lead2Solar WhatsApp number
+        const whatsappUrl = `https://wa.me/+918689843820?text=${encodedMessage}`; // Replace with actual Lead2Solar WhatsApp number
         window.open(whatsappUrl, '_blank');
     };
 
@@ -296,7 +296,7 @@ const LeadCard: React.FC<LeadCardProps> = ({ row, index, isSelected, onSelect })
 
       Thanks,`
         const encodedMessage = encodeURIComponent(message);
-        const whatsappUrl = `https://wa.me/1234567890?text=${encodedMessage}`; // Replace with actual Lead2Solar WhatsApp number
+        const whatsappUrl = `https://wa.me/+918689843820?text=${encodedMessage}`; // Replace with actual Lead2Solar WhatsApp number
         window.open(whatsappUrl, '_blank');
     };
 
