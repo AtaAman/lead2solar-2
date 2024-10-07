@@ -1,5 +1,6 @@
 type CitiesByState = Record<string, string[]>;
-export const citiesByState:CitiesByState = {
+
+export const citiesByState: CitiesByState = {
     'Andhra Pradesh': ['Visakhapatnam', 'Vijayawada', 'Guntur', 'Nellore', 'Tirupati'
     ],
     'Arunachal Pradesh': ['Itanagar', 'Tawang', 'Bhismaknagar', 'Pasighat', 'Ziro', 'Bomdila'
