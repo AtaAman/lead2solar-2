@@ -14,8 +14,6 @@ import SolarCalculator from "@/data/solar-generator";
 // import { useEffect } from "react";
 
 export default function Home({ searchParams }: { searchParams: any }) {
-
-
     return searchParams.type ? <B2BMain /> : <B2CMain />;
 }
 
