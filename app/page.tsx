@@ -54,7 +54,7 @@ const B2CMain = () => {
         <main className="">
             <Hero />
             <Section id="about-us" isBeige>
-                <AboutUs />{" "}
+                <AboutUs />
             </Section>
             <Section id="process" >
                 <HowItWorks />
