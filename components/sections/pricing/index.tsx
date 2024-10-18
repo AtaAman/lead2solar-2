@@ -142,6 +142,7 @@ const PricingSection: React.FC = () => {
                                                 </span>
                                                 <ul className="h-full">
                                                     {plan.features.map((feature, featureIndex) => (
+
                                                         <li key={featureIndex} className={cn(
                                                             "flex mb-4 items-center",
                                                             plan.isHighlighted ? 'text-white/80' : 'text-secondary-800'
