@@ -10,6 +10,7 @@ import { GetInTouch } from "@/components/elements/get-in-touch";
 import FAQ from "@/components/sections/faq-section";
 import SheetData from "@/components/sections/get-sheet-data";
 import HowItWorks from "@/components/sections/how-it-works";
+import PricingSection from "@/components/sections/pricing";
 import SolarCalculator from "@/data/solar-generator";
 // import { useEffect } from "react";
 
@@ -25,10 +26,16 @@ const B2BMain = () => {
                 <AboutUs isB2B />{" "}
             </Section>
             <Section
-                id={'frequently-asked-questions'}
+                id={'get-leads'}
 
             >
                 <SheetData />
+            </Section>
+            <Section
+                id={'get-leads'}
+
+            >
+                <PricingSection />
             </Section>
             <Section id='process' isBeige>
 

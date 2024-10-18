@@ -37,70 +37,62 @@ interface Lead {
     "Post Code": string | null;
 }
 
+
+const ITEMS_PER_PAGE = 12;
+
+interface Lead {
+    "Lead Code": string;
+    [key: string]: any; // For other properties of the lead
+}
+
+interface CityData {
+    [state: string]: string[];
+}
+
 export default function SheetData() {
-    const [rows, setRows] = useState<RowData[]>([]);
+    const [rows, setRows] = useState<Lead[]>([]);
     const [selectedState, setSelectedState] = useState<string>('');
     const [selectedCity, setSelectedCity] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [selectedLeads, setSelectedLeads] = useState<string[]>([]);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+
     const handleStateChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedState(event.target.value);
         setSelectedCity('');
+        setCurrentPage(1);
     };
 
     const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedCity(event.target.value);
+        setCurrentPage(1);
     };
 
     const fetchData = async (state?: string, city?: string) => {
-        setIsLoading(true)
+        setIsLoading(true);
         const response = await fetch("/api/getSheetData", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                state: state || null,
-                city: city || null
-            })
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ state: state || null, city: city || null })
         });
         const data = await response.json();
         setRows(data.data);
-        setIsLoading(false)
+        setIsLoading(false);
     };
-
-
 
     const handleGetAllLeads = () => {
         fetchData();
+        setCurrentPage(1);
     };
 
     const handleGetStateLeads = () => {
         fetchData(selectedState);
+        setCurrentPage(1);
     };
 
     const handleGetCityLeads = () => {
         fetchData(selectedState, selectedCity);
-    };
-    const [selectedLeads, setSelectedLeads] = useState<string[]>([]);
-
-    const composeAllLeadsMessage = () => {
-        const leadType = selectedCity ? `${selectedCity}, ${selectedState}` : selectedState ? selectedState : 'All';
-        const leadCodes = rows.map(row => row["Lead Code"]).join(", ");
-        const message = `
-      Hi Lead2Solar,
-
-      I'm interested in booking all leads for ${leadType}. Here are the details:
-
-      Number of Leads: ${rows.length}
-      Lead Codes: ${leadCodes}
-
-      Could you please review these leads and let me know the next steps?
-
-      Thank You.
-    `;
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappUrl = `https://wa.me/+918689843820?text=${encodedMessage}`; // Replace with actual Lead2Solar WhatsApp number
-        window.open(whatsappUrl, '_blank');
+        setCurrentPage(1);
     };
 
     const handleLeadSelection = (leadCode: string) => {
@@ -112,48 +104,54 @@ export default function SheetData() {
     };
 
     const composeSelectedLeadsMessage = (leads: Lead[]) => {
-        if (!leads || leads.length === 0) {
+        if (!leads || leads.length === 0) return;
 
-            return;
-        }
-        let leadType;
-        if (selectedCity && selectedState) {
-            leadType = `${selectedCity}, ${selectedState}`;
-        } else if (selectedState) {
-            leadType = selectedState;
-        } else {
-            leadType = null
-        }
+        let leadType = selectedCity && selectedState
+            ? `${selectedCity}, ${selectedState}`
+            : selectedState
+                ? selectedState
+                : null;
 
-        // Extract and join lead codes
-        const selectedLeadCodes = leads
-            .map(lead => lead["Lead Code"] || lead)
-            .join(', ');
+        const selectedLeadCodes = leads.map(lead => lead["Lead Code"]).join(', ');
 
-
-
-        // Construct the message
         const message = `
 Hi Lead2Solar,
 
-I'm interested in booking the following ${leads.length} lead${leads.length > 1 ? 's' : ''} :  \n Lead Codes: ${selectedLeadCodes}
+I'm interested in booking the following ${leads.length} lead${leads.length > 1 ? 's' : ''} :  
+Lead Codes: ${selectedLeadCodes}
 
 Could you please review these leads and let me know the next steps?
 
 Thank You.
-    `;
+        `;
 
-        // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
-
-        // Construct WhatsApp URL
         const whatsappUrl = `https://wa.me/1234567890?text=${encodedMessage}`; // Replace with actual Lead2Solar WhatsApp number
-
-        // Open the WhatsApp URL in a new tab
         window.open(whatsappUrl, '_blank');
     };
+
+    const requestLeadsMessage = () => {
+        const location = selectedCity ? `${selectedCity}, ${selectedState}` : selectedState;
+        const message = `
+Hi Lead2Solar,
+
+I'm interested in leads for ${location}. Could you please let me know if any become available?
+
+Thank you.
+        `;
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/1234567890?text=${encodedMessage}`; // Replace with actual Lead2Solar WhatsApp number
+        window.open(whatsappUrl, '_blank');
+    };
+
+    const totalPages = Math.ceil(rows.length / ITEMS_PER_PAGE);
+    const paginatedRows = rows.slice(
+        (currentPage - 1) * ITEMS_PER_PAGE,
+        currentPage * ITEMS_PER_PAGE
+    );
+
     return (
-        <Section className="bg-beige-primary rounded-3xl ">
+        <Section className="bg-beige-primary rounded-3xl">
             <Container>
                 <SubTitle
                     dark
@@ -161,7 +159,7 @@ Thank You.
                     className="text-secondary-950"
                 />
                 <div className="mb-12">
-                    <Heading as="h2" className="text-section leading-none ">
+                    <Heading as="h2" className="text-section leading-none">
                         Manage and Book Leads
                     </Heading>
                 </div>
@@ -174,7 +172,7 @@ Thank You.
                         className="p-2 border rounded w-full"
                     >
                         <option value="">-- Select State --</option>
-                        {(Object.keys(citiesByState) as string[]).map((state) => (
+                        {Object.keys(citiesByState).map((state) => (
                             <option key={state} value={state}>{state}</option>
                         ))}
                     </select>
@@ -190,7 +188,7 @@ Thank You.
                             className="p-2 border rounded w-full"
                         >
                             <option value="">-- Select City (Optional) --</option>
-                            {citiesByState[selectedState].map((city: string) => (
+                            {(citiesByState as CityData)[selectedState].map((city) => (
                                 <option key={city} value={city}>{city}</option>
                             ))}
                         </select>
@@ -202,7 +200,7 @@ Thank You.
                         <Button
                             onClick={handleGetAllLeads}
                             className="bg-secondary-950 text-secondary-50 hover:bg-secondary-800"
-                            size={'lg'}
+                            size="lg"
                             type="submit"
                         >
                             Get All Leads
@@ -212,7 +210,7 @@ Thank You.
                         <Button
                             onClick={handleGetStateLeads}
                             className="bg-secondary-950 text-secondary-50 hover:bg-secondary-800"
-                            size={'lg'}
+                            size="lg"
                             type="submit"
                         >
                             Get {selectedState} Leads
@@ -222,7 +220,7 @@ Thank You.
                         <Button
                             onClick={handleGetCityLeads}
                             className="bg-secondary-950 text-secondary-50 hover:bg-secondary-800"
-                            size={'lg'}
+                            size="lg"
                             type="submit"
                         >
                             Get {selectedCity} Leads
@@ -231,12 +229,12 @@ Thank You.
                     {(selectedState || selectedCity) && (
                         <Button
                             onClick={() => {
-                                setSelectedState('')
-                                setSelectedCity('')
+                                setSelectedState('');
+                                setSelectedCity('');
+                                setCurrentPage(1);
                             }}
-
-                            size={'lg'}
-                            variant={'destructive'}
+                            size="lg"
+                            variant="destructive"
                             type="button"
                         >
                             Reset Filters
@@ -245,10 +243,10 @@ Thank You.
                 </div>
                 {isLoading ? (
                     <Loader />
-                ) : rows?.length > 0 ? (
+                ) : paginatedRows.length > 0 ? (
                     <>
                         <div className="grid gap-4 justify-center lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-                            {rows.map((row: any, index) => (
+                            {paginatedRows.map((row, index) => (
                                 <LeadCard
                                     key={row["Lead Code"] || index}
                                     row={row}
@@ -258,19 +256,43 @@ Thank You.
                                 />
                             ))}
                         </div>
+                        <div className="mt-4 flex justify-center items-center gap-2">
+                            <Button
+                                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                disabled={currentPage === 1}
+                            >
+                                Previous
+                            </Button>
+                            <span>{currentPage} of {totalPages}</span>
+                            <Button
+                                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                disabled={currentPage === totalPages}
+                            >
+                                Next
+                            </Button>
+                        </div>
                         <BookingButton
                             selectedLeads={selectedLeads}
                             totalLeads={rows.length}
-                            composeSelectedLeadsMessage={composeSelectedLeadsMessage}
+                            composeSelectedLeadsMessage={() => composeSelectedLeadsMessage(rows.filter(row => selectedLeads.includes(row["Lead Code"])))}
                         />
                     </>
                 ) : (
-                    <p className="text-gray-500">No data to display. Select a state and a city.</p>
+                    selectedState && <div className="text-center">
+                        <p className="text-gray-500 mb-4">No leads available for the selected location.</p>
+                        <Button
+                            onClick={requestLeadsMessage}
+                            className="bg-secondary-950 text-secondary-50 hover:bg-secondary-800"
+                            size="lg"
+                        >
+                            Request Leads on WhatsApp
+                        </Button>
+                    </div>
                 )}
-            </Container></Section>
+            </Container>
+        </Section>
     );
 }
-
 interface LeadCardProps {
     row: Lead;
     index: number;
