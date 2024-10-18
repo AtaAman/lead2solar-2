@@ -9,6 +9,7 @@ import {
 import { GetInTouch } from "@/components/elements/get-in-touch";
 import FAQ from "@/components/sections/faq-section";
 import SheetData from "@/components/sections/get-sheet-data";
+import Hero2 from "@/components/sections/hero/Hero2";
 import HowItWorks from "@/components/sections/how-it-works";
 import PricingSection from "@/components/sections/pricing";
 import SolarCalculator from "@/data/solar-generator";
@@ -21,13 +22,12 @@ export default function Home({ searchParams }: { searchParams: any }) {
 const B2BMain = () => {
     return (
         <main className="">
-            <Hero isB2B />
+            <Hero2 />
             <Section id="about-us" isBeige>
                 <AboutUs isB2B />{" "}
             </Section>
             <Section
                 id={'get-leads'}
-
             >
                 <SheetData />
             </Section>
