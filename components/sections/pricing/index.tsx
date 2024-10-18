@@ -138,7 +138,7 @@ const PricingSection: React.FC = () => {
                                                         "h-2 w-2 block rounded-full",
                                                         plan.isHighlighted ? 'bg-primary-50' : 'bg-primary-950'
                                                     )} />
-                                                    What's included
+                                                    What&apos;s included
                                                 </span>
                                                 <ul className="h-full">
                                                     {plan.features.map((feature, featureIndex) => (
