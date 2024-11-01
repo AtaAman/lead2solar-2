@@ -202,13 +202,14 @@ export default function LeadManagement() {
             <Container>
                 <SubTitle
                     dark
-                    subTitle="Our team verifies these leads, ensuring they are double-checked for quality, so you can confidently claim them"
+                    subTitle="Manage and Book Leads"
                     className="text-secondary-950"
                 />
                 <div className="mb-12">
                     <Heading as="h2" className="text-section leading-none">
                         Filter and Book Leads You Want
                     </Heading>
+                    <p className=" text-sm mt-3">Our team verifies these leads, ensuring they are double-checked for quality, so you can confidently claim them.</p>
                 </div>
 
                 <SelectField

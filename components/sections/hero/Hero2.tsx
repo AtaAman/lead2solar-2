@@ -45,7 +45,7 @@ const Hero2: React.FC = () => {
 
     const formFields = (
         <form onSubmit={handleSubmit(onSubmit)} className="bg-secondary-900 text-white bg-opacity-95 p-6  w-11/12 rounded-xl shadow-2xl backdrop-blur-sm">
-            <h3 className="text-xl font-semibold mb-6 text-center text-secondary-400 ">Join Our Solar Network</h3>
+            <h3 className="text-2xl mb-6 text-center text-secondary-500 ">Join Our Solar Network</h3>
 
             <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2">
@@ -111,7 +111,8 @@ const Hero2: React.FC = () => {
 
             <Button
                 variant="secondary"
-                className="mt-6 text-black w-full bg-secondary-400 hover:bg-secondary-500 transition-all duration-300 py-3 font-semibold text-sm rounded-lg shadow-lg hover:shadow-xl"
+                size={'sm'}
+                className="mt-6 h-12 flex text-center justify-center items-center p-0 text-black w-full  mx-auto"
             >
                 Submit Application
             </Button>
@@ -124,8 +125,8 @@ const Hero2: React.FC = () => {
 
     return (
         <Section className="bg-secondary-950 h-fit py-20 flex flex-col gap-20">
-            <Container >
-                <div className="max-w-lg xl:max-w-2xl mx-auto lg:mx-0 pt-12 pb-28 lg:py-24">
+            <Container className='flex flex-col' >
+                <div className="max-w-lg xl:max-w-2xl mx-auto lg:mx-0 pt-12 lg:pb-28 pt-28 lg:py-24">
                     <Heading
                         as="h1"
                         className=" text-title md:text-6xl text-white   leading-none"
@@ -150,7 +151,7 @@ const Hero2: React.FC = () => {
                     </div>
                 </div>
                 <div className="relative flex lg:hidden  rounded-2xl bg-lime-500 items-center justify-center">
-                    <div className="w-full my-10 flex items-center rounded-2xl justify-center h-full bg-cover bg-center" style={{
+                    <div className="w-full py-12 flex items-center rounded-2xl justify-center h-full bg-cover bg-center" style={{
                         backgroundImage: 'url(https://images.unsplash.com/photo-1536408745983-0f03be6e8a00?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
                     }}>
                         {isSubmitted ? (
