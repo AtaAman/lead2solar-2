@@ -4,52 +4,35 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
     try {
         const data = await request.json();
+        const formData = new URLSearchParams();
 
-        // Send to Formspree
-        const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
+        // Append form fields
+
+        formData.append('emailAddress', data.email);
+        formData.append('entry.220477144', data.companyName);      // Company Name
+        formData.append('entry.1837054963', data.name);           // Your Name
+        formData.append('entry.589353777', data.contactNumber);   // WhatsApp Number
+        formData.append('entry.606216382', data.pinCode);         // Pin Code
+        formData.append('entry.915149810', data.gstNumber);       // GST Number
+
+        const response = await fetch(
+            'https://docs.google.com/forms/d/e/1FAIpQLSc63De_vKIHBPQWc0_sN45j593w9Zr3Y8QVkWFawhLihAtFKw/formResponse',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData,
+            }
+        );
 
         if (response.ok) {
-            // Also send to Google Sheets using Google Sheets API
-            await sendToGoogleSheets(data);
             return NextResponse.json({ success: true });
+        } else {
+            throw new Error('Form submission failed');
         }
-
-        throw new Error('Form submission failed');
     } catch (error) {
         console.error('Error submitting form:', error);
         return NextResponse.json({ error: 'Failed to submit form' }, { status: 500 });
     }
-}
-
-async function sendToGoogleSheets(data: any) {
-    const { GoogleSpreadsheet } = require('google-spreadsheet');
-
-    // Initialize the sheet
-    const doc = new GoogleSpreadsheet('YOUR_SPREADSHEET_ID');
-
-    // Initialize auth
-    await doc.useServiceAccountAuth({
-        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY,
-    });
-
-    await doc.loadInfo();
-    const sheet = doc.sheetsByIndex[0];
-
-    // Add row to sheet
-    await sheet.addRow({
-        Email: data.email,
-        CompanyName: data.companyName,
-        Name: data.name,
-        WhatsAppNumber: data.contactNumber,
-        PinCode: data.pinCode,
-        GSTNumber: data.gstNumber,
-        Timestamp: new Date().toISOString(),
-    });
 }
