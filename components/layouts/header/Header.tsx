@@ -80,13 +80,10 @@ export const Header = () => {
                     </button>
 
                     {
-                        isB2B ? <CompanyInquiryForm>
-                            <Button variant="tetriary-reversed">Get a Quote</Button>
-                        </CompanyInquiryForm>
-                            :
-                            <GetAQuote>
-                                <Button variant="tetriary-reversed">Get A Quote</Button>
-                            </GetAQuote>
+                        !isB2B &&
+                        <GetAQuote>
+                            <Button variant="tetriary-reversed">Get A Quote</Button>
+                        </GetAQuote>
                     }
                 </div>
             </div>

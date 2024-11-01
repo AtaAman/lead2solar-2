@@ -1,4 +1,6 @@
+'use client'
 /* eslint-disable @next/next/no-img-element */
+
 export const revalidate = 0;
 
 import { Button, Heading } from "@/components/elements";
@@ -6,16 +8,19 @@ import { Container, Section } from "@/components/layouts";
 import Marquee from "react-fast-marquee";
 
 import { GetAQuote } from "@/components/elements/get-a-quote";
+import { useSearchParams } from "next/navigation";
 
 interface HeroProps {
     isB2B?: boolean;
 }
 
-const Hero = ({ isB2B = false }: HeroProps) => {
+const Hero = () => {
+    const searchParams = useSearchParams()
+    const pageType = searchParams.get('type')
+    const isB2B = pageType === 'b2b'
     const texts = isB2B ? {
         Headline: 'Empower Your Solar Business with Digital Solutions',
         Subheadline: 'Join Lead2Solar and Connect with Customers Ready to Go Solar',
-        CTA: 'Get Your Free Quote Now',
     } : {
         Headline: 'Switch to Solar and Save Big on Your Energy Bills!',
         Subheadline: 'Get exclusive deals from top nearby local installers! Join the renewable energy revolution with Lead2Solar.',
@@ -38,9 +43,11 @@ const Hero = ({ isB2B = false }: HeroProps) => {
                         <p className=" text-white ">
                             {texts.Subheadline}
                         </p>
-                        <GetAQuote>
-                            <Button variant="secondary">{texts.CTA}</Button>
-                        </GetAQuote>
+                        {!isB2B &&
+                            <GetAQuote>
+                                <Button variant="secondary">{texts.CTA}</Button>
+                            </GetAQuote>
+                        }
                     </div>
                 </div>
             </Container>
