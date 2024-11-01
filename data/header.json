@@ -16,5 +16,23 @@
             "label": "FAQ",
             "href": "#frequently-asked-questions"
         }
+    ],
+    "b2bHeaders": [
+        {
+            "label": "about us",
+            "href": "#about-us"
+        },
+        {
+            "label": "Leads",
+            "href": "#leads"
+        },
+        {
+            "label": "Process",
+            "href": "#process"
+        },
+        {
+            "label": "FAQ",
+            "href": "#frequently-asked-questions"
+        }
     ]
 }

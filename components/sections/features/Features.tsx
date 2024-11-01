@@ -9,32 +9,29 @@ export const capitalized = (name: any) => {
 export const Features = ({ isB2B = false }: { isB2B?: boolean }) => {
     const solutions = isB2B ? [
         {
-            header: "Step 1",
-            heading: "Join Our Community",
-            excerpt: "Sign up for one of our WhatsApp group plans or digital marketing services to connect with potential customers and stay updated on industry trends.",
-            icon: "communityIcon",
+            'header': 'Step 1',
+            'heading': '🌟 Choose Your Plan & Connect',
+            'excerpt': 'Select a subscription plan that suits you and join our exclusive WhatsApp group if you want to stay connected. Gain access to potential customers and stay informed on industry trends.',
+            'icon': 'communityIcon'
         },
         {
-            header: "Step 2",
-            heading: "Receive Quality Leads",
-            excerpt:
-                "Access and convert leads shared in our groups to grow your customer base and increase sales.",
-            icon: "leadsIcon",
+            'header': 'Step 2',
+            'heading': '📍 Location-Based Precision',
+            'excerpt': 'Receive leads specifically from the locations you want, ensuring they`re relevant and valuable to your business.',
+            'icon': 'locationIcon'
         },
         {
-            header: "Step 3",
-            heading: "Boost Your Online Presence",
-            excerpt:
-                "Utilize our digital marketing services to engage with your audience and attract more customers through targeted campaigns and content.",
-            icon: "onlinePresenceIcon",
+            'header': 'Step 3',
+            'heading': '🤝 Pre-Verified Leads, Handpicked by You',
+            'excerpt': 'Our team double-checks every lead for quality, so you can confidently claim the ones that align best with your goals.',
+            'icon': 'verifiedIcon'
         },
         {
-            header: "Step 4",
-            heading: "Grow Your Business",
-            excerpt:
-                "Watch your business thrive with increased sales and a stronger online presence, leading to long-term success and growth.",
-            icon: "businessIcon",
-        },
+            'header': 'Step 4',
+            'heading': '📈 See Your Business Flourish',
+            'excerpt': 'Experience increased sales and a stronger online presence, setting your business up for long-term success and growth.',
+            'icon': 'growthIcon'
+        }
     ] : [
         {
             header: "Step 1",

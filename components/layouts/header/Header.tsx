@@ -9,7 +9,7 @@ import { useWindScreenowSize } from "@/hooks/useWindowSize";
 import useDetectScroll from "@smakss/react-scroll-direction";
 
 import Link from "next/link";
-import {  useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export const Header = () => {
@@ -51,7 +51,15 @@ export const Header = () => {
                             showMenu === true ? "translate-y-0" : "-translate-y-full"
                         )}
                     >
-                        {headerData.header.map((item, index) => {
+                        {isB2B ? headerData.b2bHeaders.map((item, index) => {
+                            return (
+                                <li key={index} className="" onClick={toggleMenu}>
+                                    <Link className="capitalize" scroll={true} href={item.href}>
+                                        {item.label}
+                                    </Link>
+                                </li>
+                            );
+                        }) : headerData.header.map((item, index) => {
                             return (
                                 <li key={index} className="" onClick={toggleMenu}>
                                     <Link className="capitalize" scroll={true} href={item.href}>

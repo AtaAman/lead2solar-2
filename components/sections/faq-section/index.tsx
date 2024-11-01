@@ -61,20 +61,24 @@ const faqs = [
 
 const b2bFaqs = [
     {
-        question: "What are the different WhatsApp group plans available?",
-        answer: "We offer three plans: Free WhatsApp Group, WhatsApp Group (Standard), and WhatsApp Group (Premium). Each plan has different features and joining fees tailored to different project sizes."
+        'question': 'What does Lead2Solar do for solar installers?',
+        'answer': 'Lead2Solar connects solar installers with high-quality, location-specific leads through our digital platform. We focus on growing your business by providing verified leads, boosting your online presence, and offering tailored marketing solutions to help increase sales.'
     },
     {
-        question: "What is included in your digital marketing services?",
-        answer: "Our digital marketing services include social media management and online advertising. We help you build your brand and attract more customers through targeted ad campaigns."
+        'question': 'How does the lead verification process work?',
+        'answer': 'Our team double-verifies every lead before it reaches you. This process ensures that all leads are genuine and meet quality standards, so you can confidently pursue them without unnecessary follow-up.'
     },
     {
-        question: "How do I join a WhatsApp group?",
-        answer: "Contact us through the form below or reach out via email or phone. We will guide you through the joining process based on the plan you choose."
+        'question': 'Can I select leads from specific locations only?',
+        'answer': 'Yes, with Lead2Solar, you can customize your lead preferences to receive leads from your chosen locations. This ensures that you`re only connecting with customers in the areas that best suit your business needs.'
     },
     {
-        question: "What is the lead generation process?",
-        answer: "We share project details and areas in the WhatsApp group. You can claim leads by paying for them in the Free WhatsApp Group, or access leads directly in the paid groups."
+        'question': 'Is there flexibility in the subscription plans?',
+        'answer': 'Absolutely! We offer a range of subscription plans that can be tailored to your business size, budget, and growth goals. You can also choose to join our WhatsApp group for additional networking and market insights.'
+    },
+    {
+        'question': 'How will Lead2Solar help me grow my business?',
+        'answer': 'By connecting you with pre-verified leads and offering customized digital marketing solutions, we help increase your sales and online visibility. This leads to sustainable growth, a stronger client base, and a thriving business in the solar industry.'
     }
 ]
 

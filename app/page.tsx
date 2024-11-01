@@ -27,22 +27,15 @@ const B2BMain = () => {
                 <AboutUs isB2B />{" "}
             </Section>
             <Section
-                id={'get-leads'}
+                id={'leads'}
             >
                 <SheetData />
             </Section>
-            <Section
-                id={'get-leads'}
 
-            >
-                <PricingSection />
-            </Section>
             <Section id='process' isBeige>
 
                 <Features isB2B /></Section>
-            <Section id="estimate">
-                <GetInTouch title="Get Qualified leads today!" />
-            </Section>
+
             <Section
                 id={'frequently-asked-questions'}
                 isBeige
