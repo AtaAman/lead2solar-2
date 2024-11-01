@@ -39,7 +39,22 @@ export const AboutUs = ({ isB2B = false }) => {
                         </ul>
                     </div>
                     <div className="col-span-1">
-                        <AboutUsCarousel />
+                        {isB2B ? (
+                            <div className="relative w-full h-0 pb-[56.25%]">
+                                <video
+                                    className="absolute top-0 left-0 w-full h-full rounded-lg object-cover"
+                                    controls
+                                    autoPlay
+                                    muted
+                                    loop
+                                >
+                                    <source src="/videos/video.mp4" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        ) : (
+                            <AboutUsCarousel />
+                        )}
                     </div>
                 </div>
             </Container>
