@@ -8,32 +8,49 @@ import { Heading, SubTitle } from '@/components/elements';
 import Loader from '@/components/elements/loader';
 import { cn } from '@/components/elements/utils';
 import { citiesByState } from '@/data/config';
-
-// Message Templates
 const MESSAGE_TEMPLATES = {
+    // Single lead purchase
     singleLead: (lead: Lead) => `
+Hey Lead2Solar!
+
+I'm ready to buy this lead:
 *${lead["Lead Code"]}*
-Hi Lead2Solar, I'm interested in the following project details:
-- **Lead Code:** ${lead["Lead Code"]}
-- **Project Size:** ${lead["Project Size"].replace(',', '.')} project
-- **Nature of Installation:** ${lead["Nature of Installation"] || 'N/A'}
-- **Location:** ${lead.City || 'N/A'}, ${lead.State || 'N/A'}
-- **Post Code:** ${lead["Post Code"] || 'N/A'}
-Could you please review and let me know the next steps?
-Thanks,`,
 
+Quick details:
+Size: ${lead["Project Size"].replace(',', '.')}
+Type: ${lead["Nature of Installation"] || 'N/A'}
+Location: ${lead.City || 'N/A'}, ${lead.State || 'N/A'}
+Post Code: ${lead["Post Code"] || 'N/A'}
+
+Ready to proceed! What's next?`,
+
+    // Multiple leads purchase
     multipleLeads: (leadCodes: string[]) => `
-Hi Lead2Solar, I'm interested in booking the following ${leadCodes.length} lead${leadCodes.length > 1 ? 's' : ''} :
-Lead Codes: ${leadCodes.join(', ')}
-Could you please review these leads and let me know the next steps?
-Thank You.`,
+Hey Lead2Solar!
 
-    requestLeads: (location: string) => `
-Hi Lead2Solar, I'm interested in leads for ${location}.
-Could you please let me know if any become available?
-Thank you.`
+I'm ready to purchase these ${leadCodes.length} leads:
+${leadCodes.join('\n')}
+
+Looking forward to moving ahead! What's the next step?`,
+
+    // Request for specific location
+    requestLocation: (location: string | null) => `
+Hey Lead2Solar!
+
+I'm looking for leads ${location ? `in ${location}` : 'my area'}
+Could you notify me when leads become available in ${location ? `in ${location}` : 'my area'}?
+
+Thanks!`,
+
+    // Subscription inquiry
+    subscriptionInquiry: () => `
+Hey Lead2Solar!
+
+I'm interested in your lead subscription plans
+Could you share the available options and pricing details?
+
+Thanks!`
 };
-
 // Types and Constants
 interface Lead {
     "Lead Code": string;
@@ -247,45 +264,57 @@ export default function LeadManagement() {
 
                 {isLoading ? (
                     <Loader />
-                ) : hasSearched ? (
-                    paginatedLeads.length > 0 ? (
-                        <>
-                            <div className="grid gap-4 justify-center lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-                                {paginatedLeads.map((lead) => (
-                                    <LeadCard
-                                        key={lead["Lead Code"]}
-                                        lead={lead}
-                                        isSelected={selectedLeads.includes(lead["Lead Code"])}
-                                        onSelect={() => handleLeadSelection(lead["Lead Code"])}
-                                    />
-                                ))}
+                ) : (
+                    <>
+                        {paginatedLeads.length > 0 ? (
+                            <>
+                                <div className="grid gap-4 justify-center lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
+                                    {paginatedLeads.map((lead) => (
+                                        <LeadCard
+                                            key={lead["Lead Code"]}
+                                            lead={lead}
+                                            isSelected={selectedLeads.includes(lead["Lead Code"])}
+                                            onSelect={() => handleLeadSelection(lead["Lead Code"])}
+                                        />
+                                    ))}
+                                </div>
+                                <Button
+                                    onClick={composeSelectedLeadsMessage}
+                                    className="h-14 flex gap-2 text-primary-50 text-xl rounded-full font-bold mt-10 w-full"
+                                    size="lg"
+                                    variant="secondary"
+                                >
+                                    Book {selectedLeads.length || leads.length} Lead {(selectedLeads.length || leads.length) > 1 ? 's' : ''}
+                                </Button>
+                            </>
+                        ) : hasSearched && (
+                            <div className="text-center">
+                                <p className="text-gray-500 mb-4">No leads available for the selected location.</p>
                             </div>
-                            <Button
-                                onClick={composeSelectedLeadsMessage}
-                                className="h-14 flex gap-2 text-primary-50 text-xl rounded-full font-bold mt-10 w-full"
-                                size="lg"
-                                variant="secondary"
-                            >
-                                Book {selectedLeads.length || leads.length} Lead
-                                {(selectedLeads.length || leads.length) > 1 ? 's' : ''}
-                            </Button>
-                        </>
-                    ) : (
-                        <div className="text-center">
-                            <p className="text-gray-500 mb-4">No leads available for the selected location.</p>
+                        )}
+
+                        <div className="text-center mt-6">
                             <Button
                                 onClick={() => {
-                                    const location = filters.city ? `${filters.city}, ${filters.state}` : filters.state;
-                                    window.open(createWhatsAppUrl(MESSAGE_TEMPLATES.requestLeads(location)), '_blank');
+                                    const location = filters.city
+                                        ? `${filters.city}, ${filters.state}`
+                                        : filters.state || null;
+                                    window.open(
+                                        createWhatsAppUrl(MESSAGE_TEMPLATES.requestLocation(location || null)),
+                                        '_blank'
+                                    );
                                 }}
                                 className="bg-secondary-950 text-secondary-50 hover:bg-secondary-800"
                                 size="lg"
                             >
-                                Request Leads on WhatsApp
+                                {paginatedLeads.length > 0
+                                    ? `Request More Leads for ${filters.city ? `${filters.city}, ${filters.state}` : filters.state || 'Your Area'}`
+                                    : `Request Leads for ${filters.city ? `${filters.city}, ${filters.state}` : filters.state || 'Your Area'}`
+                                }
                             </Button>
                         </div>
-                    )
-                ) : null}
+                    </>
+                )}
             </Container>
         </Section>
     );

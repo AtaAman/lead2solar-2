@@ -68,6 +68,17 @@ export const Header = () => {
                                 </li>
                             );
                         })}
+                        <div className={cn("list-none   hover:bg-secondary-900 border px-4 rounded-lg py-2 text-white flex flex-col sm:flex-row gap-4 sm:gap-8", size.width > 768 ? 'hidden' : 'block')}>
+                            {!isB2B ? (
+                                <Link href={'/?type=b2b'} onClick={() => setShowMenu(false)} className="text-white/80 hover:text-white capitalize transition-colors" scroll={true}>
+                                    Are you a Business ?
+                                </Link>
+                            ) : (
+                                <Link href={'/'} onClick={() => setShowMenu(false)} className="text-white/80 hover:text-white capitalize transition-colors" scroll={true}>
+                                    I want to install solar panels
+                                </Link>
+                            )}
+                        </div>
                     </nav>
                 </div>
 

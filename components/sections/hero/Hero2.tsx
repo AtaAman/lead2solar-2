@@ -124,7 +124,7 @@ const Hero2: React.FC = () => {
     );
 
     return (
-        <Section className="bg-secondary-950 h-fit py-20 flex flex-col gap-20">
+        <Section className="bg-secondary-950 h-fit relative py-20 flex flex-col gap-20">
             <Container className='flex flex-col' >
                 <div className="max-w-lg xl:max-w-2xl mx-auto lg:mx-0 pt-12 lg:pb-28 pt-28 lg:py-24">
                     <Heading
@@ -138,16 +138,18 @@ const Hero2: React.FC = () => {
                     </p>
 
                 </div>
-                <div className="hidden lg:flex items-center justify-center absolute top-0 right-0 h-full max-w-lg xl:max-w-none xl:w-2/5  ml-auto bg-lime-500">
-                    <div className="w-full  flex items-center justify-center h-full bg-cover bg-center" style={{
-                        backgroundImage: 'url(https://images.unsplash.com/photo-1536408745983-0f03be6e8a00?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
-                    }}>
-                        {isSubmitted ? (
-                            <div className="bg-white my-12 bg-opacity-80 p-6 rounded-lg">
-                                <h2 className="text-2xl font-bold mb-4">Thank You!</h2>
-                                <p>Your form has been submitted successfully.</p>
-                            </div>
-                        ) : formFields}
+                <div>
+                    <div className="hidden lg:flex items-center justify-center absolute top-10 right-0 h-full max-w-lg xl:max-w-none xl:w-2/5  ml-auto bg-lime-500">
+                        <div className="w-full  flex items-center justify-center h-full bg-cover bg-center" style={{
+                            backgroundImage: 'url(https://images.unsplash.com/photo-1536408745983-0f03be6e8a00?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
+                        }}>
+                            {isSubmitted ? (
+                                <div className="bg-white my-12 bg-opacity-80 p-6 rounded-lg">
+                                    <h2 className="text-2xl font-bold mb-4">Thank You!</h2>
+                                    <p>Your form has been submitted successfully.</p>
+                                </div>
+                            ) : formFields}
+                        </div>
                     </div>
                 </div>
                 <div className="relative flex lg:hidden  rounded-2xl bg-lime-500 items-center justify-center">
