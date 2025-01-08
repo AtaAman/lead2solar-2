@@ -1,38 +1,46 @@
 {
-    "header": [
-        {
-            "label": "about us",
-            "href": "#about-us"
-        },
-        {
-            "label": "Process",
-            "href": "#process"
-        },
-        {
-            "label": "Estimate",
-            "href": "#estimate"
-        },
-        {
-            "label": "FAQ",
-            "href": "#frequently-asked-questions"
-        }
-    ],
-    "b2bHeaders": [
-        {
-            "label": "about us",
-            "href": "#about-us"
-        },
-        {
-            "label": "Leads",
-            "href": "#leads"
-        },
-        {
-            "label": "Process",
-            "href": "#process"
-        },
-        {
-            "label": "FAQ",
-            "href": "#frequently-asked-questions"
-        }
-    ]
+  "header": [
+    {
+      "label": "about us",
+      "href": "/#about-us"
+    },
+    {
+      "label": "Process",
+      "href": "/#process"
+    },
+    {
+      "label": "Estimate",
+      "href": "/#estimate"
+    },
+    {
+      "label": "FAQ",
+      "href": "/#frequently-asked-questions"
+    },
+    {
+      "label": "Get leads",
+      "href": "/getleads"
+    }
+  ],
+  "b2bHeaders": [
+    {
+      "label": "about us",
+      "href": "/#about-us"
+    },
+    {
+      "label": "Leads",
+      "href": "/#leads"
+    },
+    {
+      "label": "Process",
+      "href": "/#process"
+    },
+    {
+      "label": "FAQ",
+      "href": "/#frequently-asked-questions"
+    },
+    {
+      "label": "Get leads",
+      "href": "/getleads"
+    }
+  ]
 }

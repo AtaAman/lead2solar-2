@@ -10,6 +10,20 @@
   src: url("/public/HousttelySignature-GOonZ.ttf");
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Maintain scrolling functionality */
+.scroll-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 /* Cursor component */
 .cursor {
   position: fixed;
@@ -71,10 +85,10 @@
     --radius: 0.5rem;
   }
 }
-/* styles.css or your global CSS file */
+/* styles.css or your global CSS file
 input[type="checkbox"] {
   display: none;
-}
+} */
 
 .custom-checkbox {
   width: 20px;
